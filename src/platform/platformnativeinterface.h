@@ -74,12 +74,16 @@ public:
      * @param winId  native window handle
      * @param dark   true to request a dark title bar
      * @param mica   true to request the Mica backdrop (Windows 11 only)
+     * @return true if the request was applied. A false return means the caller
+     *         must keep the window's client area opaque: requesting a backdrop
+     *         that the compositor cannot draw leaves the window blank.
      */
-    virtual void applyWindowFrameStyle(WId winId, bool dark, bool mica)
+    virtual bool applyWindowFrameStyle(WId winId, bool dark, bool mica)
     {
         Q_UNUSED(winId)
         Q_UNUSED(dark)
         Q_UNUSED(mica)
+        return false;
     }
 
     /** Return true if native window frame styling is supported. */

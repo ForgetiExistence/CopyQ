@@ -1679,8 +1679,36 @@ QString MainWindow::filter() const
 
 void MainWindow::updateWindowTransparency(bool mouseOver)
 {
-    int opacity = 100 - (mouseOver || isActiveWindow() ? m_options.transparencyFocused : m_options.transparency);
-    setWindowOpacity(opacity / 100.0);
+    const int transparency = mouseOver || isActiveWindow()
+            ? m_options.transparencyFocused : m_options.transparency;
+    // Qt only makes a window layered (WS_EX_LAYERED) when the opacity is below
+    // 1.0, and a layered window suppresses the DWM backdrop (Mica). Skipping
+    // the call at 100% keeps the window non-layered, which Mica requires.
+    const qreal opacity = transparency == 0 ? 1.0 : (100 - transparency) / 100.0;
+    if ( qFuzzyCompare(windowOpacity(), opacity) )
+        return;
+    setWindowOpacity(opacity);
+}
+
+void MainWindow::setMicaSurface(bool enabled)
+{
+    if (m_options.micaSurface == enabled)
+        return;
+    m_options.micaSurface = enabled;
+
+    // The window plane becomes transparent so the DWM backdrop shows through,
+    // and the chrome (menu bar, tab strip, tool bar) and the entry cards keep
+    // painting their own opaque surfaces. Only the "window" container colour is
+    // cleared -- see Theme::resetTheme()'s window_bg variable.
+    QPalette pal = palette();
+    pal.setColor( QPalette::Window,
+                  enabled ? QColor(Qt::transparent) : theme().color(QStringLiteral("bg")) );
+    setPalette(pal);
+
+    ui->tabWidget->setAutoFillBackground(!enabled);
+
+    if (ui->tabWidget->isVisible())
+        update();
 }
 
 void MainWindow::updateNativeWindowStyle()
@@ -1694,7 +1722,14 @@ void MainWindow::updateNativeWindowStyle()
     const bool dark = m_options.windowsDarkTitlebar
             || theme().color(QStringLiteral("bg")).lightness() < 100;
 
-    platform->applyWindowFrameStyle( winId(), dark, m_options.windowsMicaBackdrop );
+    const bool micaApplied =
+        platform->applyWindowFrameStyle( winId(), dark, m_options.windowsMicaBackdrop );
+
+    // Mica is only visible if the compositor accepted the backdrop. If it did
+    // not (Windows 10, pre-22H2, or an unsupported composition mode) the window
+    // must stay opaque, otherwise the client area is left unpainted and the
+    // window looks blank.
+    setMicaSurface( m_options.windowsMicaBackdrop && micaApplied );
 }
 
 ClipboardBrowserPlaceholder *MainWindow::getPlaceholder(int index) const

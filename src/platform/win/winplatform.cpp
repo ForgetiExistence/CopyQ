@@ -276,10 +276,11 @@ DwmSetWindowAttributePtr dwmSetWindowAttribute()
     return fn;
 }
 
-void setDwmAttribute(HWND window, DWORD attribute, LPCVOID value, DWORD size)
+bool setDwmAttribute(HWND window, DWORD attribute, LPCVOID value, DWORD size)
 {
     if (const auto fn = dwmSetWindowAttribute())
-        fn(window, attribute, value, size);
+        return SUCCEEDED( fn(window, attribute, value, size) );
+    return false;
 }
 
 bool isWindowCloaked(HWND window)
@@ -428,11 +429,11 @@ bool WinPlatform::setPreventScreenCapture(WId winId, bool prevent)
         window, prevent ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
 }
 
-void WinPlatform::applyWindowFrameStyle(WId winId, bool dark, bool mica)
+bool WinPlatform::applyWindowFrameStyle(WId winId, bool dark, bool mica)
 {
     HWND window = reinterpret_cast<HWND>(winId);
     if (!window)
-        return;
+        return false;
 
     // Unsupported attributes simply fail on older Windows, so no version
     // check is needed.
@@ -448,13 +449,17 @@ void WinPlatform::applyWindowFrameStyle(WId winId, bool dark, bool mica)
     setDwmAttribute(window, kDwmwaWindowCornerPreference,
                     &corner, sizeof(corner));
 
-    // Mica backdrop (Windows 11). Qt must leave the client area unpainted,
-    // otherwise the widget background covers the DWM backdrop.
+    // Mica backdrop (Windows 11). Mica is drawn by the compositor BEHIND the
+    // window and is only visible through pixels the app leaves transparent, so
+    // the caller must also clear the client area. Report failure so the caller
+    // can fall back to an opaque window instead of showing a blank one.
     if (mica) {
         const int backdrop = kDwmsbtMainWindow;
-        setDwmAttribute(window, kDwmwaSystemBackdropType,
-                        &backdrop, sizeof(backdrop));
+        return setDwmAttribute(window, kDwmwaSystemBackdropType,
+                               &backdrop, sizeof(backdrop));
     }
+
+    return true;
 }
 
 QCoreApplication *WinPlatform::createConsoleApplication(int &argc, char **argv)

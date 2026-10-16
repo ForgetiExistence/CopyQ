@@ -425,7 +425,9 @@ void Theme::applyWin11PaletteDefaults()
         palette.setColor( QPalette::WindowText, QColor(0x1A, 0x1A, 0x1A) );
         palette.setColor( QPalette::Button, QColor(0xFB, 0xFB, 0xFB) );
         palette.setColor( QPalette::ButtonText, QColor(0x1A, 0x1A, 0x1A) );
-        palette.setColor( QPalette::Highlight, QColor(0x00, 0x78, 0xD4) );
+        // AccentFillColorDefault (light) = SystemAccentColorDark1. #0078D4 is
+        // the bare SystemAccentColor, reserved for AccentFillColorSelectedTextBackground.
+        palette.setColor( QPalette::Highlight, QColor(0x00, 0x67, 0xC0) );
         palette.setColor( QPalette::HighlightedText, QColor(0xFF, 0xFF, 0xFF) );
         palette.setColor( QPalette::ToolTipBase, QColor(0xF9, 0xF9, 0xF9) );
         palette.setColor( QPalette::ToolTipText, QColor(0x1A, 0x1A, 0x1A) );
@@ -550,6 +552,29 @@ void Theme::resetTheme()
     m_theme["dark"]            = Option(defaultColorVarDark);
     m_theme["shadow"]          = Option(defaultColorVarShadow);
 
+    // Win11 layered surfaces. Fluent 2 stacks three planes and separates them
+    // with a 1px stroke rather than by a colour change alone:
+    //   window (bg)    -> chrome plane: menu bar, tool bar, tab strip
+    //   card (card_bg) -> content plane: the clipboard list sits on this
+    //   row            -> transparent at rest, so the card shows through
+    // Without a distinct card plane every region shares one flat colour and the
+    // window reads as an undivided slab. See win11_items.css / main_window.css.
+    // They default to the chrome colour so that themes which do not opt in
+    // (nord, onedark, ...) keep their previous flat look. win11_light.ini and
+    // win11_dark.ini override each one with the real WinUI layer value.
+    m_theme["card_bg"]         = Option("${bg}");
+    m_theme["card_stroke"]     = Option("${midlight}");
+    m_theme["divider"]         = Option("${midlight}");
+    m_theme["subtle_hover"]    = Option("${midlight}");
+    m_theme["subtle_pressed"]  = Option("${mid}");
+    m_theme["control_stroke"]  = Option("${mid}");
+
+    // Colour of the window plane behind the widgets. Themes set this to
+    // "transparent" when the Mica backdrop is on, so the compositor shows
+    // through; everything layered on top (cards, chrome, menus) keeps its own
+    // opaque surface.
+    m_theme["window_bg"]       = Option("${bg}");
+
     m_theme["font"]        = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonFont : nullptr);
     m_theme["edit_font"]   = Option(win11FontString(win11MonoFont, 10), "VALUE", ui ? ui->pushButtonEditorFont : nullptr);
     m_theme["find_font"]   = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonFoundFont : nullptr);
@@ -570,7 +595,7 @@ void Theme::resetTheme()
     m_theme["menu_bar_css"] = Option(
                 "\n    ;background: ${bg}"
                 "\n    ;color: ${fg}"
-                "\n    ;border-bottom: 1px solid ${midlight}"
+                "\n    ;border-bottom: 1px solid ${divider}"
                 );
     m_theme["menu_bar_selected_css"] = Option(
                 "\n    ;background: ${midlight}"
@@ -600,7 +625,7 @@ void Theme::resetTheme()
 
     m_theme["tab_bar_css"] = Option(
                 "\n    ;background: ${bg}"
-                "\n    ;border-bottom: 1px solid ${midlight}"
+                "\n    ;border-bottom: 1px solid ${divider}"
                 );
     m_theme["tab_bar_tab_selected_css"] = Option(
                 "\n    ;padding: 0.5em 0.9em"
@@ -652,6 +677,7 @@ void Theme::resetTheme()
                 "\n    ;color: ${fg}"
                 "\n    ;background-color: ${bg}"
                 "\n    ;border: 0"
+                "\n    ;border-left: 1px solid ${divider}"
                 );
     m_theme["tool_button_css"] = Option(
                 "\n    ;background: transparent"

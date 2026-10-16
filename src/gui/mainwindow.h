@@ -106,6 +106,9 @@ struct MainWindowOptions {
 
     bool windowsDarkTitlebar = false;
     bool windowsMicaBackdrop = false;
+
+    /** True while the window plane is transparent for the Mica backdrop. */
+    bool micaSurface = false;
 };
 
 /**
@@ -502,6 +505,16 @@ private:
     void updateSizeGrip(bool frameless);
     void placeSizeGrip();
     void updateNativeWindowStyle();
+
+    /**
+     * Switch the window plane between opaque and Mica-transparent.
+     *
+     * Mica is drawn by the compositor behind the window, so it is only visible
+     * where the app paints nothing. Passing true clears the window plane and
+     * lets the theme's chrome and entry cards keep their own surfaces; passing
+     * false restores the opaque background.
+     */
+    void setMicaSurface(bool enabled);
     void tabsMoved(const QString &oldPrefix, const QString &newPrefix);
     void tabBarMenuRequested(QPoint pos, int tab);
     void tabTreeMenuRequested(QPoint pos, const QString &groupPath);

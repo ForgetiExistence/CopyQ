@@ -25,7 +25,7 @@ public:
     bool setPreventScreenCapture(WId winId, bool prevent) override;
     bool canPreventScreenCapture() override { return true; }
 
-    void applyWindowFrameStyle(WId winId, bool dark, bool mica) override;
+    bool applyWindowFrameStyle(WId winId, bool dark, bool mica) override;
     bool canStyleWindowFrame() override { return true; }
 
     QCoreApplication *createConsoleApplication(int &argc, char **argv) override;

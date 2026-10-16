@@ -9,37 +9,68 @@
  * It is selected with  css_template_items=win11_items  (set in both .ini
  * files), so it does NOT clobber the shipped items.css used by other themes.
  *
+ * Layering model (the point of this file)
+ * ---------------------------------------
+ * The window is built from stacked planes, exactly like the Win+V clipboard
+ * history flyout:
+ *
+ *   window plane   ${bg}          menu bar, tab strip, tool bar  (chrome)
+ *     content card ${card_bg}     ...only used for the preview pane
+ *       entry card ${card_bg}     one per clipboard entry, 1px ${card_stroke}
+ *
+ * A clipboard entry is a CARD, not a bare row: it carries its own surface and
+ * a 1px stroke, so neighbouring entries read as separate objects. Painting
+ * every row on one flat colour is what made the list look like an undivided
+ * slab. The gaps come from `item_spacing` (see the .ini), the surface and the
+ * stroke come from here.
+ *
  * Fluent rules applied here:
- *   - 4px ControlCornerRadius on list rows
- *   - state fills: rest / hover (subtle fill) / selected (accent fill)
- *   - Fluent two-tone focus ring on the current row
- *   - plugin indicators tinted with the Windows accent
+ *   - 4px ControlCornerRadius on entry cards
+ *   - CardStrokeColorDefault hairline around every entry
+ *   - state fills: rest (card) / hover (subtle) / selected (accent)
+ *   - Fluent two-tone focus ring on the current entry
  * ========================================================================== */
 
+/* The list itself is transparent: the window plane shows through the gaps
+   between entry cards. It must NOT paint an opaque background or the cards
+   would sit on a second, identical surface and lose their edge again. */
 #ClipboardBrowser{
     ;${font}
     ;color: ${fg}
-    ;background: ${bg}
+    ;background: transparent
+    ;border: none
 }
 
-/* --- list rows: 4px ControlCornerRadius, no per-row hairline -------------- */
+/* The scroll viewport must be transparent too, otherwise it paints the window
+   colour over the gaps between cards and hides the Mica backdrop. */
+#ClipboardBrowser > QWidget,
+#ClipboardBrowser QAbstractScrollArea::viewport,
+#stacked_widget{
+    ;background: transparent
+}
+
+/* --- entry card: 4px ControlCornerRadius + CardStrokeColorDefault --------- */
 #ClipboardBrowser::item{
+    ;background: ${card_bg}
+    ;border: 1px solid ${card_stroke}
     ;border-radius: 4px
+    ;${item_css}
 }
 
-/* Alternate rows keep the alternate surface but the SAME text colour:
-   alt_fg is not a defined theme option, so it resolves to transparent and
-   would make alternate-row text invisible. */
+/* Win11 lists do not alternate row colours; the per-entry stroke does the
+   separating. Keep alt rows on the same card surface so the rhythm is even. */
 #ClipboardBrowser::item:alternate:!hover:!selected{
     ;color: ${fg}
-    ;background: ${alt_bg}
+    ;background: ${card_bg}
+    ;border: 1px solid ${card_stroke}
     ;${alt_item_css}
 }
 
-/* Selected row: WinUI AccentFillColorDefault. */
+/* --- selected entry: WinUI AccentFillColorDefault ------------------------- */
 #ClipboardBrowser::item:selected{
     ;color: ${sel_fg}
     ;background: ${sel_bg}
+    ;border: 1px solid ${sel_bg}
     ;${sel_item_css}
 }
 
@@ -58,6 +89,7 @@ ${hsv_saturation_factor = 0.5}
     #ClipboardBrowser::item:selected:!active{
         ;background: ${sel_bg}
         ;color: ${sel_fg}
+        ;border: 1px solid ${sel_bg}
         ;${sel_item_css}
     }
 ${hsv_saturation_factor = 1}
@@ -66,16 +98,18 @@ ${hsv_saturation_factor = 1}
 ${hsv_value_factor = 0.9}
     #ClipboardBrowser::item:hover:selected{
         ;background: ${sel_bg}
+        ;border: 1px solid ${sel_bg}
         ;${hover_item_css}
     }
     #ClipboardBrowser::item:hover:!selected{
-        ;background: ${alt_bg}
+        ;background: ${subtle_hover}
         ;color: ${fg}
+        ;border: 1px solid ${card_stroke}
         ;${hover_item_css}
     }
 ${hsv_value_factor = 1}
 
-/* --- focus: Fluent two-tone ring (2px outer accent) on the current row ---- */
+/* --- focus: Fluent two-tone ring (2px accent) on the current entry -------- */
 /* The view must not draw its own dotted outline. */
 #ClipboardBrowser::focus{ outline: 0 }
 
@@ -86,18 +120,21 @@ ${hsv_value_factor = 1}
     ;${cur_item_css}
 }
 
-/* --- per-theme item fragments (defined in the .ini) ---------------------- */
+/* --- per-theme entry fragments (defined in the .ini) --------------------- */
 #ClipboardBrowser{ ${item_css} }
 #ClipboardBrowser::item:alternate:!hover:!selected{ ${alt_item_css} }
 #ClipboardBrowser::item:selected{ ${sel_item_css} }
 
 /* --- plugin indicators: Windows accent / neutral ------------------------- */
+/* The accent must come from the theme, not a literal: the light accent
+   (#0067C0) is nearly invisible on the dark surface, where WinUI uses the
+   Light2 tint (#4CC2FF). */
 ItemPinned{
-    ;qproperty-pinnedIndicatorColor: rgba(0, 103, 192, 255)
+    ;qproperty-pinnedIndicatorColor: ${sel_bg}
     ;qproperty-pinnedIndicatorWidth: 8
 }
 ItemNotes{
-    ;qproperty-notesIndicatorColor: rgba(128, 128, 128, 180)
+    ;qproperty-notesIndicatorColor: ${num_fg}
     ;qproperty-notesIndicatorWidth: 16
 }
 
