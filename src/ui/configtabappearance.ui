@@ -10,7 +10,76 @@
     <height>500</height>
    </rect>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#ConfigTabAppearance { background-color: #F3F3F3; }
+
+QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid #E5E5E5; background-color: #FBFBFB; }
+QPushButton:hover { background-color: #F5F5F5; }
+QPushButton:pressed { background-color: #EDEBE9; }
+
+QPushButton#pushButtonColorBg, QPushButton#pushButtonColorFg,
+QPushButton#pushButtonColorSelBg, QPushButton#pushButtonColorSelFg,
+QPushButton#pushButtonColorFoundBg, QPushButton#pushButtonColorFoundFg,
+QPushButton#pushButtonColorEditorBg, QPushButton#pushButtonColorEditorFg,
+QPushButton#pushButtonColorAltBg, QPushButton#pushButtonColorNotesBg,
+QPushButton#pushButtonColorNotesFg, QPushButton#pushButtonColorNumberFg,
+QPushButton#pushButtonColorNotificationBg, QPushButton#pushButtonColorNotificationFg {
+  padding: 0px;
+}
+
+QPushButton#pushButtonFont, QPushButton#pushButtonFoundFont,
+QPushButton#pushButtonEditorFont, QPushButton#pushButtonNotesFont,
+QPushButton#pushButtonNumberFont, QPushButton#pushButtonNotificationFont {
+  padding: 0px;
+  min-height: 14px;
+}
+
+QPushButton#pushButtonLoadTheme, QPushButton#pushButtonSaveTheme,
+QPushButton#pushButtonResetTheme, QPushButton#pushButtonEditTheme {
+  min-height: 32px;
+  min-width: 100px;
+}
+
+QLineEdit, QTextEdit, QPlainTextEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
+
+QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; }
+
+QCheckBox, QRadioButton { spacing: 8px; }
+
+QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; }
+
+QListWidget, QTreeWidget, QTableWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
+
+QTabWidget::pane { border: 1px solid #E5E5E5; border-radius: 8px; }
+QTabBar::tab { border-radius: 4px; padding: 6px 16px; margin-right: 4px; }
+QTabBar::tab:selected { background-color: #0078D4; color: #FFFFFF; }
+
+QScrollArea { border: none; background: transparent; }
+
+QScrollBar { border: none; background: transparent; width: 8px; margin: 0; }
+QScrollBar::handle { background: #C0C0C0; border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:hover { background: #A0A0A0; }
+
+QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }
+
+QLabel { background: transparent; }</string>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0,1">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item>
     <widget class="QScrollArea" name="scrollAreaTheme">
      <property name="sizePolicy">
@@ -38,10 +107,25 @@
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>8</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <property name="spacing">
+        <number>8</number>
+       </property>
        <item>
         <layout class="QGridLayout" name="gridLayout_6">
          <property name="spacing">
-          <number>2</number>
+          <number>8</number>
          </property>
          <item row="9" column="0">
           <spacer name="verticalSpacer_3">
@@ -277,6 +361,9 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_7">
+         <property name="spacing">
+          <number>8</number>
+         </property>
          <item row="0" column="0">
           <widget class="QCheckBox" name="checkBoxShowNumber">
            <property name="text">
@@ -335,6 +422,9 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_5">
+         <property name="spacing">
+          <number>8</number>
+         </property>
          <item row="4" column="1">
           <widget class="QPushButton" name="pushButtonResetTheme">
            <property name="text">
@@ -374,7 +464,17 @@
           </widget>
          </item>
          <item row="1" column="1" colspan="2">
-          <widget class="QComboBox" name="comboBoxThemes"/>
+          <widget class="QComboBox" name="comboBoxThemes">
+           <property name="minimumWidth">
+            <number>160</number>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -386,6 +486,18 @@
     <layout class="QVBoxLayout" name="browserParentLayout" stretch="0">
      <property name="leftMargin">
       <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>8</number>
+     </property>
+     <property name="rightMargin">
+      <number>8</number>
+     </property>
+     <property name="bottomMargin">
+      <number>8</number>
+     </property>
+     <property name="spacing">
+      <number>8</number>
      </property>
      <item>
       <widget class="QLabel" name="label_15">

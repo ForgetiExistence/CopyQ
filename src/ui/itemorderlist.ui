@@ -10,18 +10,65 @@
     <height>375</height>
    </rect>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* Windows 11 Fluent Design base */
+QWidget {
+    background-color: #F3F3F3;
+}
+/* Fluent scrollbars */
+QScrollBar:vertical, QScrollBar:horizontal {
+    border: none;
+    background: transparent;
+    width: 8px;
+    height: 8px;
+    margin: 0;
+}
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+    min-width: 24px;
+}
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+QScrollBar::add-line, QScrollBar::sub-line {
+    border: none;
+    background: none;
+    width: 0px;
+    height: 0px;
+}
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+/* Invisible splitter handle */
+QSplitter::handle {
+    background: transparent;
+}
+/* Fluent tooltip */
+QToolTip {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding: 4px 8px;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <item>
     <widget class="QSplitter" name="splitter">
@@ -46,12 +93,41 @@
      <widget class="QWidget" name="verticalLayoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>1</number>
+        <number>8</number>
        </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>8</number>
+         </property>
          <item>
           <widget class="QToolButton" name="pushButtonAdd">
+           <property name="minimumSize">
+            <size>
+             <width>88</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 24px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QToolButton:hover {
+    background-color: #F5F5F5;
+}
+QToolButton:pressed {
+    background-color: #EDEDED;
+}
+QToolButton:disabled {
+    background-color: #F3F3F3;
+    color: #9E9E9E;
+    border: 1px solid #E5E5E5;
+}</string>
+           </property>
            <property name="toolTip">
             <string/>
            </property>
@@ -68,6 +144,32 @@
            <property name="enabled">
             <bool>false</bool>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>96</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 24px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QToolButton:hover {
+    background-color: #F5F5F5;
+}
+QToolButton:pressed {
+    background-color: #EDEDED;
+}
+QToolButton:disabled {
+    background-color: #F3F3F3;
+    color: #9E9E9E;
+    border: 1px solid #E5E5E5;
+}</string>
+           </property>
            <property name="text">
             <string>&amp;Remove</string>
            </property>
@@ -78,6 +180,31 @@
          </item>
          <item>
           <widget class="QToolButton" name="pushButtonUp">
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QToolButton:hover {
+    background-color: #F5F5F5;
+}
+QToolButton:pressed {
+    background-color: #EDEDED;
+}
+QToolButton:disabled {
+    background-color: #F3F3F3;
+    color: #9E9E9E;
+    border: 1px solid #E5E5E5;
+}</string>
+           </property>
            <property name="toolTip">
             <string extracomment="Button moves current item one row up">Move up</string>
            </property>
@@ -88,6 +215,31 @@
          </item>
          <item>
           <widget class="QToolButton" name="pushButtonDown">
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QToolButton:hover {
+    background-color: #F5F5F5;
+}
+QToolButton:pressed {
+    background-color: #EDEDED;
+}
+QToolButton:disabled {
+    background-color: #F3F3F3;
+    color: #9E9E9E;
+    border: 1px solid #E5E5E5;
+}</string>
+           </property>
            <property name="toolTip">
             <string extracomment="Button moves current item one row down">Move down</string>
            </property>
@@ -98,6 +250,31 @@
          </item>
          <item>
           <widget class="QToolButton" name="pushButtonTop">
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QToolButton:hover {
+    background-color: #F5F5F5;
+}
+QToolButton:pressed {
+    background-color: #EDEDED;
+}
+QToolButton:disabled {
+    background-color: #F3F3F3;
+    color: #9E9E9E;
+    border: 1px solid #E5E5E5;
+}</string>
+           </property>
            <property name="toolTip">
             <string extracomment="Button moves current item to the top">Move to the top</string>
            </property>
@@ -108,6 +285,31 @@
          </item>
          <item>
           <widget class="QToolButton" name="pushButtonBottom">
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QToolButton:hover {
+    background-color: #F5F5F5;
+}
+QToolButton:pressed {
+    background-color: #EDEDED;
+}
+QToolButton:disabled {
+    background-color: #F3F3F3;
+    color: #9E9E9E;
+    border: 1px solid #E5E5E5;
+}</string>
+           </property>
            <property name="toolTip">
             <string extracomment="Button moves current item to the bottom">Move to the bottom</string>
            </property>
@@ -133,6 +335,21 @@
        </item>
        <item>
         <widget class="QListWidget" name="listWidgetItems">
+         <property name="styleSheet">
+          <string notr="true">QListWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+QListWidget::item {
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+QListWidget::item:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}</string>
+         </property>
          <property name="dragDropMode">
           <enum>QAbstractItemView::InternalMove</enum>
          </property>
@@ -149,19 +366,19 @@
       </property>
       <layout class="QVBoxLayout" name="widgetLayout">
        <property name="spacing">
-        <number>0</number>
+        <number>8</number>
        </property>
        <property name="leftMargin">
-        <number>0</number>
+        <number>8</number>
        </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>8</number>
        </property>
        <property name="rightMargin">
-        <number>0</number>
+        <number>8</number>
        </property>
        <property name="bottomMargin">
-        <number>0</number>
+        <number>8</number>
        </property>
       </layout>
      </widget>

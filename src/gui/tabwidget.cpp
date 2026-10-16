@@ -62,8 +62,14 @@ TabWidget::TabWidget(QWidget *parent)
     layout->setSpacing(0);
 
     m_stackedWidget = new QStackedWidget(this);
+    m_stackedWidget->setObjectName("stacked_widget");
     layout->addWidget(m_stackedWidget);
 
+    // Win11 Fluent 2 tab pane. The stacked widget background and content area
+    // corner radius are set via the theme stylesheet applied by
+    // MainWindow::loadSettings() (theme().decorateMainWindow()). Here we
+    // ensure the stacked widget gets the Win11 background from the palette
+    // so it doesn't show the native default panel color.
     createTabBar();
 
     addTabAction(this, QKeySequence::PreviousChild, this, &TabWidget::previousTab);

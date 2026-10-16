@@ -13,11 +13,227 @@
   <property name="windowTitle">
    <string/>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* Windows 11 Fluent Design */
+
+QWidget {
+    background-color: #F3F3F3;
+}
+
+QLabel {
+    color: #1F1F1F;
+    background: transparent;
+}
+
+QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 24px;
+    min-width: 96px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+    color: #1F1F1F;
+}
+
+QPushButton:hover {
+    background-color: #F5F5F5;
+}
+
+QPushButton:pressed {
+    background-color: #EDEDED;
+}
+
+QPushButton:disabled {
+    background-color: #F3F3F3;
+    border: 1px solid #E5E5E5;
+    color: #A0A0A0;
+}
+
+QLineEdit, QTextEdit, QPlainTextEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    background-color: #FFFFFF;
+    color: #1F1F1F;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+    border: 2px solid #0078D4;
+}
+
+QComboBox {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 24px;
+    background-color: #FFFFFF;
+    color: #1F1F1F;
+}
+
+QComboBox:focus {
+    border: 2px solid #0078D4;
+}
+
+QCheckBox {
+    spacing: 8px;
+}
+
+QRadioButton {
+    spacing: 8px;
+}
+
+QGroupBox {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #FBFBFB;
+}
+
+QListWidget, QTreeWidget, QTableWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+
+QTabWidget::pane {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    border-radius: 4px;
+    padding: 6px 16px;
+    margin-right: 4px;
+    background-color: #F3F3F3;
+    color: #1F1F1F;
+}
+
+QTabBar::tab:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+
+QMenu {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    padding: 4px;
+    background-color: #FBFBFB;
+}
+
+QDialog {
+    background-color: #F3F3F3;
+}
+
+QSpinBox {
+    min-height: 24px;
+    min-width: 80px;
+    padding-right: 4px;
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    background-color: #FFFFFF;
+    color: #1F1F1F;
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 16px;
+    border: none;
+    background: #F3F3F3;
+    border-radius: 2px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background: #E5E5E5;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background: #D1D1D1;
+}
+
+QSpinBox::up-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid #1F1F1F;
+}
+
+QSpinBox::down-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #1F1F1F;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>8</number>
+     </property>
      <item>
       <widget class="IconSelectButton" name="iconButton">
+       <property name="minimumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 32px;
+    min-width: 96px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+    color: #1F1F1F;
+}
+
+QPushButton:hover {
+    background-color: #F5F5F5;
+}
+
+QPushButton:pressed {
+    background-color: #EDEDED;
+}</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -31,6 +247,19 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    color: #1F1F1F;
+    background: transparent;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -40,8 +269,20 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>8</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    color: #1F1F1F;
+    background: transparent;
+}</string>
+       </property>
        <property name="text">
         <string>&amp;Maximum number of items:</string>
        </property>
@@ -52,6 +293,57 @@
      </item>
      <item>
       <widget class="QSpinBox" name="maxItems">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QSpinBox {
+    min-height: 32px;
+    min-width: 80px;
+    padding-right: 4px;
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    background-color: #FFFFFF;
+    color: #1F1F1F;
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 16px;
+    border: none;
+    background: #F3F3F3;
+    border-radius: 2px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background: #E5E5E5;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background: #D1D1D1;
+}
+
+QSpinBox::up-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid #1F1F1F;
+}
+
+QSpinBox::down-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #1F1F1F;
+}</string>
+       </property>
        <property name="specialValueText">
         <string>default</string>
        </property>
@@ -78,58 +370,131 @@
      </item>
     </layout>
    </item>
-    <item>
-     <widget class="QCheckBox" name="storeItems">
-      <property name="text">
-       <string>&amp;Save Items</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="labelEncryptedExpireSeconds">
-        <property name="text">
-         <string>Require password after an interval:</string>
-        </property>
-        <property name="buddy">
-         <cstring>spinBoxExpireEncryptedTabSeconds</cstring>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBoxExpireEncryptedTabSeconds">
-        <property name="toolTip">
-         <string>Per-tab timeout in seconds for requiring encryption password again.
+     <item>
+      <widget class="QCheckBox" name="storeItems">
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    spacing: 8px;
+    background: transparent;
+    color: #1F1F1F;
+}</string>
+       </property>
+       <property name="text">
+        <string>&amp;Save Items</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="labelEncryptedExpireSeconds">
+         <property name="minimumHeight">
+          <number>32</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #1F1F1F;
+    background: transparent;
+}</string>
+         </property>
+         <property name="text">
+          <string>Require password after an interval:</string>
+         </property>
+         <property name="buddy">
+          <cstring>spinBoxExpireEncryptedTabSeconds</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBoxExpireEncryptedTabSeconds">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox {
+    min-height: 32px;
+    min-width: 80px;
+    padding-right: 4px;
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    background-color: #FFFFFF;
+    color: #1F1F1F;
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 16px;
+    border: none;
+    background: #F3F3F3;
+    border-radius: 2px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background: #E5E5E5;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background: #D1D1D1;
+}
+
+QSpinBox::up-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid #1F1F1F;
+}
+
+QSpinBox::down-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #1F1F1F;
+}</string>
+         </property>
+         <property name="toolTip">
+          <string>Per-tab timeout in seconds for requiring encryption password again.
 
 Set to 0 to use global setting.</string>
-        </property>
-        <property name="specialValueText">
-         <string>global</string>
-        </property>
-        <property name="suffix">
-         <string notr="true"> s</string>
-        </property>
-        <property name="maximum">
-         <number>999999</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
+         </property>
+         <property name="specialValueText">
+          <string>global</string>
+         </property>
+         <property name="suffix">
+          <string notr="true"> s</string>
+         </property>
+         <property name="maximum">
+          <number>999999</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">

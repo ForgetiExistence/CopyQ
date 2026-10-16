@@ -16,6 +16,9 @@
   <property name="widgetResizable">
    <bool>true</bool>
   </property>
+  <property name="styleSheet">
+   <string>QScrollBar { border: none; background: transparent; width: 8px; margin: 0; } QScrollBar::handle { background: #C0C0C0; border-radius: 4px; min-height: 24px; } QScrollBar::handle:hover { background: #A0A0A0; }</string>
+  </property>
   <widget class="QWidget" name="scrollAreaWidgetContents">
    <property name="geometry">
     <rect>
@@ -26,6 +29,21 @@
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_15">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="leftMargin">
+     <number>12</number>
+    </property>
+    <property name="topMargin">
+     <number>12</number>
+    </property>
+    <property name="rightMargin">
+     <number>12</number>
+    </property>
+    <property name="bottomMargin">
+     <number>12</number>
+    </property>
     <item>
      <spacer name="horizontalSpacer_13">
       <property name="orientation">
@@ -41,6 +59,21 @@
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_10">
+      <property name="spacing">
+       <number>8</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <spacer name="verticalSpacer_3">
         <property name="orientation">
@@ -56,6 +89,18 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -70,7 +115,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBoxLanguage"/>
+         <widget class="QComboBox" name="comboBoxLanguage">
+          <property name="styleSheet">
+           <string>border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px;</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="horizontalSpacer_3">
@@ -89,6 +138,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxTextWrap">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Break text if it's too long to fit on line</string>
         </property>
@@ -99,6 +151,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxAlwaysOnTop">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Keep main window above other windows</string>
         </property>
@@ -109,6 +164,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxCloseOnUnfocus">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Close main window when other application has focus</string>
         </property>
@@ -119,6 +177,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxOpenWindowsOnCurrentScreen">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Enable to open windows on current screen. Disable to open windows where they were last closed</string>
         </property>
@@ -129,6 +190,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxConfirmExit">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Confirm application exit</string>
         </property>
@@ -142,6 +206,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxAutostart">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Run the application on system startup</string>
         </property>
@@ -152,6 +219,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxPreventScreenCapture">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Prevent capturing app windows in screenshots and recordings</string>
         </property>
@@ -162,6 +232,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxEncryptTabs">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Encrypt tab data on disk (requires password to be set)</string>
         </property>
@@ -172,6 +245,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxUseKeychain">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Use an available external key store for the encryption password (Windows Credential Store, macOS Keychain, GNOME Keyring, KWallet)</string>
         </property>
@@ -182,6 +258,21 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayoutChangePassword">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
          <spacer name="horizontalSpacerChangePasswordIndent">
           <property name="orientation">
@@ -206,6 +297,12 @@
           <property name="text">
            <string>Change Encryption &amp;Password...</string>
           </property>
+          <property name="styleSheet">
+           <string>border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid #E5E5E5; background-color: #FBFBFB;</string>
+          </property>
+          <property name="minimumHeight">
+           <number>32</number>
+          </property>
          </widget>
         </item>
         <item>
@@ -225,6 +322,18 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayoutNavigationStyle">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
@@ -242,6 +351,9 @@
          <widget class="QComboBox" name="comboBoxNavigationStyle">
           <property name="toolTip">
            <string>Support for Vi navigation (keys H, J, K, L, / and more) and Emacs navigation (Ctrl+N, P, V and more)</string>
+          </property>
+          <property name="styleSheet">
+           <string>border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px;</string>
           </property>
           <item>
            <property name="text">
@@ -277,6 +389,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxSaveFilterHistory">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Save and restore history of item filters</string>
         </property>
@@ -287,6 +402,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxAutocompleteCommands">
+        <property name="styleSheet">
+         <string>spacing: 8px;</string>
+        </property>
         <property name="toolTip">
          <string>Automatically show popup to complete function, type and variable names in commands</string>
         </property>
@@ -306,9 +424,30 @@
         <property name="checkable">
          <bool>false</bool>
         </property>
+        <property name="styleSheet">
+         <string>border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px;</string>
+        </property>
         <layout class="QGridLayout" name="gridLayout_8">
+         <property name="spacing">
+          <number>8</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item row="3" column="0">
           <widget class="QCheckBox" name="checkBoxCopyClip">
+           <property name="styleSheet">
+            <string>spacing: 8px;</string>
+           </property>
            <property name="toolTip">
             <string>Allow to paste copied content the same way as mouse selections (usually by pressing middle mouse button)</string>
            </property>
@@ -319,6 +458,9 @@
          </item>
          <item row="4" column="0">
           <widget class="QCheckBox" name="checkBoxCopySel">
+           <property name="styleSheet">
+            <string>spacing: 8px;</string>
+           </property>
            <property name="toolTip">
             <string>Allow to paste mouse selections using shortcut (usually Ctrl+V or Shift+Insert)</string>
            </property>
@@ -329,6 +471,9 @@
          </item>
          <item row="0" column="0">
           <widget class="QCheckBox" name="checkBoxClip">
+           <property name="styleSheet">
+            <string>spacing: 8px;</string>
+           </property>
            <property name="toolTip">
             <string>Save clipboard in history</string>
            </property>
@@ -342,6 +487,9 @@
          </item>
          <item row="2" column="0">
           <widget class="QCheckBox" name="checkBoxSel">
+           <property name="styleSheet">
+            <string>spacing: 8px;</string>
+           </property>
            <property name="toolTip">
             <string>Save text selected with mouse (primary selection) in history</string>
            </property>
@@ -352,6 +500,9 @@
          </item>
          <item row="5" column="0">
           <widget class="QCheckBox" name="checkBoxRunSel">
+           <property name="styleSheet">
+            <string>spacing: 8px;</string>
+           </property>
            <property name="text">
             <string>(&amp;5) Run automatic commands on selection</string>
            </property>

@@ -68,6 +68,24 @@ public:
     virtual bool canPreventScreenCapture() = 0;
 
     /**
+     * Apply native window frame styling (dark title bar, rounded corners and
+     * optionally the Mica system backdrop). Default implementation is a no-op.
+     *
+     * @param winId  native window handle
+     * @param dark   true to request a dark title bar
+     * @param mica   true to request the Mica backdrop (Windows 11 only)
+     */
+    virtual void applyWindowFrameStyle(WId winId, bool dark, bool mica)
+    {
+        Q_UNUSED(winId)
+        Q_UNUSED(dark)
+        Q_UNUSED(mica)
+    }
+
+    /** Return true if native window frame styling is supported. */
+    virtual bool canStyleWindowFrame() { return false; }
+
+    /**
      * Create QCoreApplication object for console output (to show help or version and quit).
      */
     virtual QCoreApplication *createConsoleApplication(int &argc, char **argv) = 0;

@@ -17,7 +17,7 @@
 #include <QSettings>
 #include <QStyleFactory>
 
-#if QT_VERSION >= QT_VERSION_CHECK(6,8,0)
+#if QT_VERSION >= QT_VERSION_CHECK(6,5,0)
 #   include <QStyleHints>
 #endif
 
@@ -27,6 +27,22 @@ namespace {
 
 /// Up to this value of background lightness, window title style would be light.
 const int lightThreshold = 100;
+
+} // namespace
+
+/// Windows 11 / Fluent 2 typography: the Segoe UI Variable type ramp. The UI
+/// font is the "Text" optical instance; the editor uses Cascadia Mono, the
+/// Windows terminal/console font, at the same 10pt body size.
+const QString win11UiFont("Segoe UI Variable Text");
+const QString win11MonoFont("Cascadia Mono");
+
+/// Build a QFont::toString() descriptor for the given family and size (pt).
+/// The fixed field layout (family, pointSize, pixelSize, styleHint, weight,
+/// then the style flags) is the format QFont::fromString accepts.
+QString win11FontString(const QString &family, double pointSize)
+{
+    return QStringLiteral("%1,%2,-1,5,50,0,0,0,0,0").arg(family).arg(pointSize);
+}
 
 const QLatin1String defaultColorVarBase("default_bg");
 const QLatin1String defaultColorVarText("default_text");
@@ -224,8 +240,6 @@ double getFactor(const QString &name, const QHash<QString, QVariant> &values)
     return ok ? scale : 1.0;
 }
 
-} // namespace
-
 Theme::Theme(const QSettings &settings)
 {
     loadTheme(settings);
@@ -321,14 +335,81 @@ void Theme::decorateMainWindow(QWidget *mainWindow) const
     palette.setColor( QPalette::Text, fg );
     palette.setColor( QPalette::Window, bg );
     palette.setColor( QPalette::WindowText, fg );
-    palette.setColor( QPalette::Button, bg );
-    palette.setColor( QPalette::ButtonText, fg );
+    palette.setColor( QPalette::Button, color("button_bg") );
+    palette.setColor( QPalette::ButtonText, color("button_fg") );
     palette.setColor( QPalette::Highlight, color("sel_bg") );
     palette.setColor( QPalette::HighlightedText, color("sel_fg") );
+    palette.setColor( QPalette::Link, color("link") );
+    palette.setColor( QPalette::LinkVisited, color("link_visited") );
 
     mainWindow->setPalette(palette);
     const QString cssTemplate = value("css_template_main_window").toString();
     mainWindow->setStyleSheet(getStyleSheet(cssTemplate));
+}
+
+void Theme::applyApplicationPalette() const
+{
+    if ( !isMainWindowThemeEnabled() )
+        return;
+
+    QPalette palette = QApplication::palette();
+    const auto bg = color("bg");
+    const auto fg = color("fg");
+    palette.setColor( QPalette::Base, bg );
+    palette.setColor( QPalette::AlternateBase, color("alt_bg") );
+    palette.setColor( QPalette::Text, fg );
+    palette.setColor( QPalette::Window, bg );
+    palette.setColor( QPalette::WindowText, fg );
+    palette.setColor( QPalette::Button, color("button_bg") );
+    palette.setColor( QPalette::ButtonText, color("button_fg") );
+    palette.setColor( QPalette::ToolTipBase, color("notes_bg") );
+    palette.setColor( QPalette::ToolTipText, color("notes_fg") );
+    palette.setColor( QPalette::PlaceholderText, color("num_fg") );
+    palette.setColor( QPalette::Highlight, color("sel_bg") );
+    palette.setColor( QPalette::HighlightedText, color("sel_fg") );
+    palette.setColor( QPalette::Link, color("link") );
+    palette.setColor( QPalette::LinkVisited, color("link_visited") );
+    palette.setColor( QPalette::Light, color("light") );
+    palette.setColor( QPalette::Midlight, color("midlight") );
+    palette.setColor( QPalette::Dark, color("dark") );
+    palette.setColor( QPalette::Mid, color("mid") );
+    palette.setColor( QPalette::Shadow, color("shadow") );
+    QApplication::setPalette(palette);
+
+    const QFont appFont = font("font");
+    if ( !appFont.family().isEmpty() )
+        QApplication::setFont(appFont);
+}
+
+void Theme::applyWin11PaletteDefaults()
+{
+    // Seed the Qt default palette with the Windows 11 surface ramp so that the
+    // default_* color variables (resolved through QPalette in
+    // defaultColorVarToRole / deserializeColor) return Win11 values even before
+    // a theme with style_main_window=true is loaded. Call once at startup,
+    // before any Theme is constructed.
+    QPalette palette = QApplication::palette();
+    palette.setColor( QPalette::Base, QColor(0xF3, 0xF3, 0xF3) );
+    palette.setColor( QPalette::AlternateBase, QColor(0xFF, 0xFF, 0xFF) );
+    palette.setColor( QPalette::Text, QColor(0x1A, 0x1A, 0x1A) );
+    palette.setColor( QPalette::Window, QColor(0xF3, 0xF3, 0xF3) );
+    palette.setColor( QPalette::WindowText, QColor(0x1A, 0x1A, 0x1A) );
+    palette.setColor( QPalette::Button, QColor(0xFB, 0xFB, 0xFB) );
+    palette.setColor( QPalette::ButtonText, QColor(0x1A, 0x1A, 0x1A) );
+    palette.setColor( QPalette::Highlight, QColor(0x00, 0x78, 0xD4) );
+    palette.setColor( QPalette::HighlightedText, QColor(0xFF, 0xFF, 0xFF) );
+    palette.setColor( QPalette::ToolTipBase, QColor(0xF9, 0xF9, 0xF9) );
+    palette.setColor( QPalette::ToolTipText, QColor(0x1A, 0x1A, 0x1A) );
+    palette.setColor( QPalette::PlaceholderText, QColor(0x6E, 0x6E, 0x6E) );
+    palette.setColor( QPalette::BrightText, QColor(0xFF, 0xFF, 0xFF) );
+    palette.setColor( QPalette::Light, QColor(0xFF, 0xFF, 0xFF) );
+    palette.setColor( QPalette::Midlight, QColor(0xED, 0xED, 0xED) );
+    palette.setColor( QPalette::Dark, QColor(0xA0, 0xA0, 0xA0) );
+    palette.setColor( QPalette::Mid, QColor(0xD1, 0xD1, 0xD1) );
+    palette.setColor( QPalette::Shadow, QColor(0x80, 0x80, 0x80) );
+    palette.setColor( QPalette::Link, QColor(0x00, 0x67, 0xC0) );
+    palette.setColor( QPalette::LinkVisited, QColor(0x00, 0x67, 0xC0) );
+    QApplication::setPalette(palette);
 }
 
 void Theme::decorateScrollArea(QAbstractScrollArea *scrollArea) const
@@ -382,6 +463,28 @@ bool Theme::isAntialiasingEnabled() const
     return m_antialiasing;
 }
 
+bool Theme::isSystemDarkTheme()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6,5,0)
+    const Qt::ColorScheme scheme = QGuiApplication::styleHints()->colorScheme();
+    if (scheme == Qt::ColorScheme::Dark)
+        return true;
+    if (scheme == Qt::ColorScheme::Light)
+        return false;
+#endif
+
+#ifdef Q_OS_WIN
+    // Fallback for Qt < 6.5 where QStyleHints::colorScheme() is unavailable
+    // and for the "no preference" case.
+    QSettings personalize(
+        QStringLiteral("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),
+        QSettings::NativeFormat);
+    return personalize.value(QStringLiteral("AppsUseLightTheme"), 1).toInt() == 0;
+#else
+    return false;
+#endif
+}
+
 void Theme::resetTheme()
 {
     m_theme["bg"]        = Option(defaultColorVarBase, "VALUE", ui ? ui->pushButtonColorBg : nullptr);
@@ -399,86 +502,115 @@ void Theme::resetTheme()
     m_theme["notification_bg"]  = Option("#333", "VALUE", ui ? ui->pushButtonColorNotificationBg : nullptr);
     m_theme["notification_fg"]  = Option("#ddd", "VALUE", ui ? ui->pushButtonColorNotificationFg : nullptr);
 
-    m_theme["font"]        = Option("", "VALUE", ui ? ui->pushButtonFont : nullptr);
-    m_theme["edit_font"]   = Option("", "VALUE", ui ? ui->pushButtonEditorFont : nullptr);
-    m_theme["find_font"]   = Option("", "VALUE", ui ? ui->pushButtonFoundFont : nullptr);
-    m_theme["num_font"]    = Option("", "VALUE", ui ? ui->pushButtonNumberFont : nullptr);
-    m_theme["notes_font"]  = Option("", "VALUE", ui ? ui->pushButtonNotesFont : nullptr);
-    m_theme["notification_font"]  = Option("", "VALUE", ui ? ui->pushButtonNotificationFont : nullptr);
+    // Win11 surface ramp used by the application palette (see applyApplicationPalette).
+    // Button surfaces follow WinUI ControlFillColorDefault/Secondary; the link
+    // accent follows AccentTextFillColorPrimaryBrush.
+    m_theme["button_bg"]       = Option("#FBFBFB");
+    m_theme["button_fg"]       = Option(defaultColorVarText);
+    m_theme["link"]            = Option("#0067C0");
+    m_theme["link_visited"]    = Option("#0067C0");
+    m_theme["light"]           = Option("#FFFFFF");
+    m_theme["midlight"]        = Option("#EDEDED");
+    m_theme["mid"]             = Option("#D1D1D1");
+    m_theme["dark"]            = Option("#A0A0A0");
+    m_theme["shadow"]          = Option("#808080");
+
+    m_theme["font"]        = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonFont : nullptr);
+    m_theme["edit_font"]   = Option(win11FontString(win11MonoFont, 10), "VALUE", ui ? ui->pushButtonEditorFont : nullptr);
+    m_theme["find_font"]   = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonFoundFont : nullptr);
+    m_theme["num_font"]    = Option(win11FontString(win11UiFont, 8), "VALUE", ui ? ui->pushButtonNumberFont : nullptr);
+    m_theme["notes_font"]  = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonNotesFont : nullptr);
+    m_theme["notification_font"]  = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonNotificationFont : nullptr);
     m_theme["show_number"] = Option(true, "checked", ui ? ui->checkBoxShowNumber : nullptr);
     m_theme["show_scrollbars"] = Option(true, "checked", ui ? ui->checkBoxScrollbars : nullptr);
 
     m_theme["css"] = Option("");
     m_theme["menu_css"] = Option(
-                "\n    ;border: 1px solid ${sel_bg}"
-                "\n    ;background: ${bg}"
+                "\n    ;border: 1px solid #E5E5E5"
+                "\n    ;background: #F9F9F9"
                 "\n    ;color: ${fg}"
+                "\n    ;border-radius: 8px"
+                "\n    ;padding: 4px"
                 );
     m_theme["menu_bar_css"] = Option(
                 "\n    ;background: ${bg}"
                 "\n    ;color: ${fg}"
+                "\n    ;border-bottom: 1px solid #E5E5E5"
                 );
     m_theme["menu_bar_selected_css"] = Option(
-                "\n    ;background: ${sel_bg}"
-                "\n    ;color: ${sel_fg}"
+                "\n    ;background: #EDEDED"
+                "\n    ;color: ${fg}"
+                "\n    ;border-radius: 4px"
                 );
     m_theme["menu_bar_disabled_css"] = Option(
-                "\n    ;color: ${bg - #666}"
+                "\n    ;color: #A0A0A0"
                 );
 
-    m_theme["item_css"] = Option("");
-    m_theme["alt_item_css"] = Option("");
-    m_theme["sel_item_css"] = Option("");
-    m_theme["hover_item_css"] = Option("");
-    m_theme["cur_item_css"] = Option(
-                "\n    ;border: 0.1em solid ${sel_bg}"
+    m_theme["item_css"] = Option(
+                "\n    ;padding: 0.4em 0.6em"
                 );
-    m_theme["item_spacing"] = Option("");
+    m_theme["alt_item_css"] = Option("");
+    m_theme["sel_item_css"] = Option(
+                "\n    ;border-radius: 4px"
+                );
+    m_theme["hover_item_css"] = Option(
+                "\n    ;border-radius: 4px"
+                );
+    m_theme["cur_item_css"] = Option(
+                "\n    ;border: 2px solid ${sel_bg}"
+                "\n    ;border-radius: 4px"
+                );
+    m_theme["item_spacing"] = Option(2);
     m_theme["notes_css"] = Option("");
 
     m_theme["tab_bar_css"] = Option(
-                "\n    ;background: ${bg - #222}"
+                "\n    ;background: ${bg}"
+                "\n    ;border-bottom: 1px solid #E5E5E5"
                 );
     m_theme["tab_bar_tab_selected_css"] = Option(
-                "\n    ;padding: 0.5em"
+                "\n    ;padding: 0.5em 0.9em"
                 "\n    ;background: ${bg}"
-                "\n    ;border: 0.05em solid ${bg}"
+                "\n    ;border: 0"
+                "\n    ;border-bottom: 2px solid ${sel_bg}"
                 "\n    ;color: ${fg}"
                 );
     m_theme["tab_bar_tab_unselected_css"] = Option(
-                "\n    ;border: 0.05em solid ${bg}"
-                "\n    ;padding: 0.5em"
-                "\n    ;background: ${bg - #222}"
-                "\n    ;color: ${fg - #333}"
+                "\n    ;padding: 0.5em 0.9em"
+                "\n    ;background: ${bg}"
+                "\n    ;border: 0"
+                "\n    ;border-bottom: 2px solid transparent"
+                "\n    ;color: #6B6B6B"
                 );
     m_theme["tab_bar_scroll_buttons_css"] = Option(
-                "\n    ;background: ${bg - #222}"
+                "\n    ;background: transparent"
                 "\n    ;color: ${fg}"
                 "\n    ;border: 0"
                 );
     m_theme["tab_bar_item_counter"] = Option(
-                "\n    ;color: ${fg - #044 + #400}"
-                "\n    ;font-size: 6pt"
+                "\n    ;color: ${num_fg}"
+                "\n    ;font-size: 8pt"
                 );
     m_theme["tab_bar_sel_item_counter"] = Option(
-                "\n    ;color: ${sel_bg - #044 + #400}"
+                "\n    ;color: ${sel_bg}"
                 );
 
     m_theme["tab_tree_css"] = Option(
                 "\n    ;color: ${fg}"
                 "\n    ;background-color: ${bg}"
+                "\n    ;padding: .20em"
                 );
     m_theme["tab_tree_sel_item_css"] = Option(
-                "\n    ;color: ${sel_fg}"
-                "\n    ;background-color: ${sel_bg}"
-                "\n    ;border-radius: 2px"
+                "\n    ;color: ${fg}"
+                "\n    ;background: #EDEDED"
+                "\n    ;border-radius: 4px"
                 );
     m_theme["tab_tree_item_counter"] = Option(
-                "\n    ;color: ${fg - #044 + #400}"
-                "\n    ;font-size: 6pt"
+                "\n    ;padding: .33em"
+                "\n    ;color: ${num_fg}"
+                "\n    ;font-size: 8pt"
                 );
     m_theme["tab_tree_sel_item_counter"] = Option(
-                "\n    ;color: ${sel_fg - #044 + #400}"
+                "\n    ;color: ${sel_bg}"
                 );
 
     m_theme["tool_bar_css"] = Option(
@@ -487,28 +619,34 @@ void Theme::resetTheme()
                 "\n    ;border: 0"
                 );
     m_theme["tool_button_css"] = Option(
+                "\n    ;background: transparent"
                 "\n    ;color: ${fg}"
-                "\n    ;background: ${bg}"
                 "\n    ;border: 0"
-                "\n    ;border-radius: 2px"
+                "\n    ;border-radius: 4px"
+                "\n    ;padding: 4px"
                 );
     m_theme["tool_button_selected_css"] = Option(
-                "\n    ;background: ${sel_bg - #222}"
-                "\n    ;color: ${sel_fg}"
-                "\n    ;border: 1px solid ${sel_bg}"
+                "\n    ;background: #EDEDED"
+                "\n    ;color: ${fg}"
+                "\n    ;border: 0"
+                "\n    ;border-radius: 4px"
                 );
     m_theme["tool_button_pressed_css"] = Option(
-                "\n    ;background: ${sel_bg}"
+                "\n    ;background: #D6D6D6"
+                "\n    ;border-radius: 4px"
                 );
 
     m_theme["search_bar"] = Option(
                 "\n    ;background: ${edit_bg}"
                 "\n    ;color: ${edit_fg}"
-                "\n    ;border: 1px solid ${alt_bg}"
+                "\n    ;border: 1px solid #D1D1D1"
+                "\n    ;border-radius: 4px"
+                "\n    ;padding: 4px 8px"
                 "\n    ;margin: 2px"
                 );
     m_theme["search_bar_focused"] = Option(
                 "\n    ;border: 1px solid ${sel_bg}"
+                "\n    ;border-bottom: 2px solid ${sel_bg}"
                 );
 
     m_theme["use_system_icons"] = Option(false, "checked", ui ? ui->checkBoxSystemIcons : nullptr);

@@ -554,6 +554,33 @@ struct style : Config<QString> {
     }
 };
 
+struct follow_system_theme : Config<bool> {
+    static QString name() { return QStringLiteral("follow_system_theme"); }
+    static Value defaultValue() { return false; }
+    static const char *description() {
+        return "Automatically load the win11_light or win11_dark theme"
+               " to match the operating system light/dark preference";
+    }
+};
+
+struct windows_dark_titlebar : Config<bool> {
+    static QString name() { return QStringLiteral("windows_dark_titlebar"); }
+    static Value defaultValue() { return false; }
+    static const char *description() {
+        return "Use a dark window title bar on Windows (works on Qt < 6.8"
+               " too, where the theme alone cannot change the title bar)";
+    }
+};
+
+struct windows_mica_backdrop : Config<bool> {
+    static QString name() { return QStringLiteral("windows_mica_backdrop"); }
+    static Value defaultValue() { return false; }
+    static const char *description() {
+        return "Enable the Mica system backdrop on Windows 11"
+               " (the client area must not paint an opaque background)";
+    }
+};
+
 struct native_notifications : Config<bool> {
     static QString name() { return QStringLiteral("native_notifications"); }
     static Value defaultValue() { return true; }

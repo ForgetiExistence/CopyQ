@@ -16,33 +16,73 @@
     <verstretch>1</verstretch>
    </sizepolicy>
   </property>
+  <property name="styleSheet">
+   <string>CommandEdit {
+    background-color: #F3F3F3;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>0</number>
+    <number>8</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>12</number>
    </property>
    <item>
     <widget class="QPlainTextEdit" name="plainTextEditCommand">
      <property name="tabChangesFocus">
       <bool>true</bool>
      </property>
+     <property name="minimumHeight">
+      <number>32</number>
+     </property>
+     <property name="styleSheet">
+      <string>QPlainTextEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    background-color: #FFFFFF;
+}
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}</string>
+     </property>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>8</number>
+     </property>
      <item>
-      <widget class="CommandHelpButton" name="helpButton" native="true"/>
+      <widget class="CommandHelpButton" name="helpButton" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="labelErrors">
@@ -54,6 +94,14 @@
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="minimumWidth">
+        <number>120</number>
+       </property>
+       <property name="styleSheet">
+        <string>QLabel {
+    color: #1F1F1F;
+}</string>
        </property>
       </widget>
      </item>

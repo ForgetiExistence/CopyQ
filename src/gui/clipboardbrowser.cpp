@@ -1004,8 +1004,13 @@ void ClipboardBrowser::paintEvent(QPaintEvent *e)
         rect.adjust(8, 0, -8, 0);
 
         QPainter p(viewport());
-        p.setPen( QPen(QColor(255, 255, 255, 150), s) );
-        p.setCompositionMode(QPainter::CompositionMode_Difference);
+        // Win11 Fluent 2 drag-and-drop indicator uses the accent color.
+        // Falls back to the highlight palette color which the theme sets.
+        QColor accentColor = palette().color(QPalette::Highlight);
+        if (!accentColor.isValid())
+            accentColor = QColor(0x00, 0x78, 0xD4); // AccentFillColorDefaultBrush
+        accentColor.setAlpha(180);
+        p.setPen( QPen(accentColor, s) );
         p.drawLine( rect.topLeft(), rect.topRight() );
     }
 }

@@ -19,22 +19,41 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>0</number>
+     <number>8</number>
     </property>
     <property name="leftMargin">
-     <number>0</number>
+     <number>12</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>12</number>
     </property>
     <property name="rightMargin">
-     <number>0</number>
+     <number>12</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>12</number>
     </property>
     <item>
-     <widget class="Utils::FilterLineEdit" name="searchBar"/>
+     <widget class="Utils::FilterLineEdit" name="searchBar">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    background-color: #FFFFFF;
+    min-height: 32px;
+}
+QLineEdit:focus {
+    border: 1px solid #0078D4;
+}</string>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="TabWidget" name="tabWidget" native="true">
@@ -43,6 +62,43 @@
         <horstretch>0</horstretch>
         <verstretch>1</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabBar::tab {
+    border-radius: 4px;
+    padding: 6px 16px;
+    margin-right: 4px;
+}
+QTabBar::tab:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+QToolBar {
+    border: none;
+    spacing: 8px;
+}
+QToolButton {
+    border-radius: 4px;
+    padding: 4px 8px;
+    min-height: 32px;
+}
+QToolButton:hover {
+    background-color: #E5E5E5;
+}</string>
       </property>
      </widget>
     </item>
@@ -83,6 +139,22 @@
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}</string>
+       </property>
        <widget class="QWidget" name="scrollAreaWidgetContents">
         <property name="geometry">
          <rect>
@@ -99,7 +171,7 @@
    </widget>
   </widget>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
+ <layoutdefault spacing="8" margin="12"/>
  <customwidgets>
   <customwidget>
    <class>TabWidget</class>

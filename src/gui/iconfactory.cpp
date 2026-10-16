@@ -282,11 +282,31 @@ QPixmap drawFontIcon(ushort id, int w, int h, const QColor &color)
 
 QColor getDefaultIconColor(const QColor &color)
 {
+    // Win11 Fluent 2 palette uses:
+    //   Light theme: bg=#F3F3F3 (lightness ~95), text=#1A1A1A (lightness ~10)
+    //   Dark theme:  bg=#202020 (lightness ~12), text=#FFFFFF (lightness 255)
+    // The Win11 surfaces are near the edges of the lightness scale, so the
+    // old saturation+30 / lightness-140 heuristic produces washed-out icons
+    // on the light surface and invisible ones on the dark surface.
+    // Win11 icons should derive from TextFillColorPrimary on light surfaces
+    // and from TextFillColorPrimary (white) on dark surfaces, with a subtle
+    // desaturation toward the surface color for the Fluent look.
     QColor c = color;
-    bool menuBackgrounIsLight = c.lightness() > lightThreshold;
-    c.setHsl(c.hue(),
-             qMax(0, qMin(255, c.saturation() + (menuBackgrounIsLight ? 30 : 10))),
-             qMax(0, qMin(255, c.lightness() + (menuBackgrounIsLight ? -140 : 100))));
+    const bool isLight = c.lightness() > lightThreshold;
+
+    if (isLight) {
+        // Light surface: derive a dark, slightly desaturated icon color.
+        // Win11 TextFillColorPrimary is #1A1A1A (near-black).
+        c.setHsl(c.hue(),
+                 qMax(0, qMin(255, c.saturation() + 20)),
+                 qMax(0, qMin(255, c.lightness() - 120)));
+    } else {
+        // Dark surface: derive a light icon color.
+        // Win11 TextFillColorPrimary is #FFFFFF (white).
+        c.setHsl(c.hue(),
+                 qMax(0, qMin(255, c.saturation() + 15)),
+                 qMax(0, qMin(255, c.lightness() + 130)));
+    }
 
     return c;
 }

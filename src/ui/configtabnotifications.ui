@@ -16,6 +16,13 @@
   <property name="widgetResizable">
    <bool>true</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QScrollBar {border: none; background: transparent; width: 8px; margin: 0;}
+QScrollBar::handle {background: #C0C0C0; border-radius: 4px; min-height: 24px;}
+QScrollBar::handle:hover {background: #A0A0A0;}
+QScrollBar::add-line, QScrollBar::sub-line {border: none; background: transparent; width: 0px; height: 0px;}
+QScrollBar::add-page, QScrollBar::sub-page {background: transparent;}</string>
+  </property>
   <widget class="QWidget" name="scrollAreaWidgetContents_3">
    <property name="geometry">
     <rect>
@@ -25,7 +32,25 @@
      <height>523</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #F3F3F3;</string>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_13">
+    <property name="leftMargin">
+     <number>12</number>
+    </property>
+    <property name="topMargin">
+     <number>12</number>
+    </property>
+    <property name="rightMargin">
+     <number>12</number>
+    </property>
+    <property name="bottomMargin">
+     <number>12</number>
+    </property>
+    <property name="spacing">
+     <number>8</number>
+    </property>
     <item>
      <spacer name="horizontalSpacer_15">
       <property name="orientation">
@@ -41,6 +66,21 @@
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>12</number>
+      </property>
+      <property name="topMargin">
+       <number>12</number>
+      </property>
+      <property name="rightMargin">
+       <number>12</number>
+      </property>
+      <property name="bottomMargin">
+       <number>12</number>
+      </property>
+      <property name="spacing">
+       <number>8</number>
+      </property>
       <item>
        <spacer name="verticalSpacer_8">
         <property name="orientation">
@@ -59,6 +99,12 @@
         <property name="fieldGrowthPolicy">
          <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
         </property>
+        <property name="horizontalSpacing">
+         <number>8</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>8</number>
+        </property>
         <item row="1" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
@@ -71,10 +117,20 @@
         </item>
         <item row="1" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <property name="spacing">
+           <number>8</number>
+          </property>
           <item>
            <widget class="QComboBox" name="comboBoxNotificationPosition">
             <property name="toolTip">
              <string>Position on screen for notifications</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FBFBFB;}
+QComboBox:hover {border: 1px solid #0078D4;}
+QComboBox::drop-down {border: none; width: 24px;}
+QComboBox::down-arrow {image: none; width: 10px; height: 10px;}
+QComboBox QAbstractItemView {border: 1px solid #E5E5E5; border-radius: 8px; background-color: #FFFFFF; selection-background-color: #0078D4; selection-color: #FFFFFF; padding: 4px; outline: none;}</string>
             </property>
             <item>
              <property name="text">
@@ -135,6 +191,9 @@
         </item>
         <item row="2" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <property name="spacing">
+           <number>8</number>
+          </property>
           <item>
            <widget class="QSpinBox" name="spinBoxNotificationPopupInterval">
             <property name="toolTip">
@@ -143,6 +202,11 @@
 Set to 0 to disable this.
 
 Set to -1 to keep visible until clicked.</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSpinBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF;}
+QSpinBox:hover {border: 1px solid #0078D4;}
+QSpinBox::up-button, QSpinBox::down-button {border: none; background: transparent; width: 20px; subcontrol-origin: border;}</string>
             </property>
             <property name="minimum">
              <number>-1</number>
@@ -179,12 +243,20 @@ Set to -1 to keep visible until clicked.</string>
         </item>
         <item row="3" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <property name="spacing">
+           <number>8</number>
+          </property>
           <item>
            <widget class="QSpinBox" name="spinBoxClipboardNotificationLines">
             <property name="toolTip">
              <string>Number of lines to show for new clipboard content.
 
 Set to 0 to disable.</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSpinBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF;}
+QSpinBox:hover {border: 1px solid #0078D4;}
+QSpinBox::up-button, QSpinBox::down-button {border: none; background: transparent; width: 20px; subcontrol-origin: border;}</string>
             </property>
             <property name="maximum">
              <number>100</number>
@@ -211,6 +283,12 @@ Set to 0 to disable.</string>
           <property name="text">
            <string>&amp;Use native notifications</string>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QCheckBox {spacing: 8px;}
+QCheckBox::indicator {width: 18px; height: 18px; border-radius: 4px; border: 1px solid #D1D1D1; background-color: #FFFFFF;}
+QCheckBox::indicator:checked {background-color: #0078D4; border: 1px solid #0078D4;}
+QCheckBox::indicator:hover {border: 1px solid #0078D4;}</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -220,7 +298,29 @@ Set to 0 to disable.</string>
         <property name="title">
          <string>Notification Geometry (in screen points)</string>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; background-color: #FFFFFF;}
+QGroupBox::title {subcontrol-origin: margin; subcontrol-position: top left; left: 12px; padding: 0 4px; color: #1A1A1A;}</string>
+        </property>
         <layout class="QFormLayout" name="formLayout_4">
+         <property name="horizontalSpacing">
+          <number>8</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>8</number>
+         </property>
+         <property name="leftMargin">
+          <number>12</number>
+         </property>
+         <property name="topMargin">
+          <number>12</number>
+         </property>
+         <property name="rightMargin">
+          <number>12</number>
+         </property>
+         <property name="bottomMargin">
+          <number>12</number>
+         </property>
          <item row="0" column="0">
           <widget class="QLabel" name="label_7">
            <property name="text">
@@ -233,10 +333,18 @@ Set to 0 to disable.</string>
          </item>
          <item row="0" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_19">
+           <property name="spacing">
+            <number>8</number>
+           </property>
            <item>
             <widget class="QSpinBox" name="spinBoxNotificationHorizontalOffset">
              <property name="toolTip">
               <string>Notification distance from left or right screen edge in screen points</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF;}
+QSpinBox:hover {border: 1px solid #0078D4;}
+QSpinBox::up-button, QSpinBox::down-button {border: none; background: transparent; width: 20px; subcontrol-origin: border;}</string>
              </property>
              <property name="minimum">
               <number>-99999</number>
@@ -273,10 +381,18 @@ Set to 0 to disable.</string>
          </item>
          <item row="1" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_20">
+           <property name="spacing">
+            <number>8</number>
+           </property>
            <item>
             <widget class="QSpinBox" name="spinBoxNotificationVerticalOffset">
              <property name="toolTip">
               <string>Notification distance from top or bottom screen edge in screen points</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF;}
+QSpinBox:hover {border: 1px solid #0078D4;}
+QSpinBox::up-button, QSpinBox::down-button {border: none; background: transparent; width: 20px; subcontrol-origin: border;}</string>
              </property>
              <property name="minimum">
               <number>-99999</number>
@@ -313,10 +429,18 @@ Set to 0 to disable.</string>
          </item>
          <item row="2" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_21">
+           <property name="spacing">
+            <number>8</number>
+           </property>
            <item>
             <widget class="QSpinBox" name="spinBoxNotificationMaximumWidth">
              <property name="toolTip">
               <string>Maximum width for notification in screen points</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF;}
+QSpinBox:hover {border: 1px solid #0078D4;}
+QSpinBox::up-button, QSpinBox::down-button {border: none; background: transparent; width: 20px; subcontrol-origin: border;}</string>
              </property>
              <property name="maximum">
               <number>9999</number>
@@ -350,10 +474,18 @@ Set to 0 to disable.</string>
          </item>
          <item row="3" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_22">
+           <property name="spacing">
+            <number>8</number>
+           </property>
            <item>
             <widget class="QSpinBox" name="spinBoxNotificationMaximumHeight">
              <property name="toolTip">
               <string>Maximum height for notification in screen points</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox {border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF;}
+QSpinBox:hover {border: 1px solid #0078D4;}
+QSpinBox::up-button, QSpinBox::down-button {border: none; background: transparent; width: 20px; subcontrol-origin: border;}</string>
              </property>
              <property name="maximum">
               <number>9999</number>

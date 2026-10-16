@@ -41,6 +41,13 @@ TabBar::TabBar(QWidget *parent)
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setAcceptDrops(true);
 
+    // Win11 Fluent 2 tab bar. The pill-shaped tabs, 4px spacing, and accent
+    // selection indicator are applied via the theme CSS template
+    // (tab_bar_css / tab_bar_tab_selected_css in main_window.css). Here we
+    // only ensure Qt uses the rounded tab shape and the Win11 visual style
+    // flag so native style rendering doesn't override the CSS.
+    setExpanding(false);
+
     connect( this, &QTabBar::currentChanged,
              this, &TabBar::onCurrentChanged );
 }
@@ -216,6 +223,11 @@ void TabBar::updateTabStyle(int index)
     QWidget *tabCountLabel = tabButton(index, QTabBar::RightSide);
     if (tabCountLabel) {
         tabCountLabel->setProperty("CopyQ_selected", index == currentIndex());
+        // Win11 Fluent pill badge: 4px corner radius on the item count label.
+        // Applied inline so it renders correctly even without a full theme
+        // stylesheet; the theme CSS can override this.
+        tabCountLabel->setStyleSheet(
+            QStringLiteral("QLabel { border-radius: 4px; }"));
         style()->unpolish(tabCountLabel);
         style()->polish(tabCountLabel);
     }

@@ -10,6 +10,25 @@
     <height>523</height>
    </rect>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QScrollArea#ConfigTabHistory { background-color: #F3F3F3; border: none; }
+QDialog { background-color: #F3F3F3; }
+QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid #E5E5E5; background-color: #FBFBFB; }
+QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
+QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF; }
+QCheckBox, QRadioButton { spacing: 8px; }
+QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; background-color: #FBFBFB; }
+QListWidget, QTreeWidget, QTableWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
+QTabWidget::pane { border: 1px solid #E5E5E5; border-radius: 8px; }
+QTabBar::tab { border-radius: 4px; padding: 6px 16px; margin-right: 4px; }
+QTabBar::tab:selected { background-color: #0078D4; color: #FFFFFF; }
+QScrollBar { border: none; background: transparent; width: 8px; height: 8px; margin: 0; }
+QScrollBar::handle { background: #C0C0C0; border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:hover { background: #A0A0A0; }
+QScrollBar::add-line, QScrollBar::sub-line { border: none; background: none; width: 0px; height: 0px; }
+QScrollBar::add-page, QScrollBar::sub-page { background: none; }
+QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }</string>
+  </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>
   </property>
@@ -26,6 +45,21 @@
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_16">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="leftMargin">
+     <number>12</number>
+    </property>
+    <property name="topMargin">
+     <number>12</number>
+    </property>
+    <property name="rightMargin">
+     <number>12</number>
+    </property>
+    <property name="bottomMargin">
+     <number>12</number>
+    </property>
     <item>
      <spacer name="horizontalSpacer_14">
       <property name="orientation">
@@ -41,6 +75,21 @@
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_11">
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <spacer name="verticalSpacer_5">
         <property name="orientation">
@@ -56,6 +105,27 @@
       </item>
       <item>
        <layout class="QFormLayout" name="formLayout_2">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>12</number>
+        </property>
+        <property name="horizontalSpacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <property name="fieldGrowthPolicy">
          <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
         </property>
@@ -71,8 +141,32 @@
         </item>
         <item row="1" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QSpinBox" name="spinBoxItems">
+            <property name="styleSheet">
+             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; min-height: 24px; }</string>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Maximum number of items in each tab</string>
             </property>
@@ -111,8 +205,32 @@
         </item>
         <item row="2" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QSpinBox" name="spinBoxExpireTab">
+            <property name="styleSheet">
+             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; min-height: 24px; }</string>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Unload each tab from memory after specified number of minutes of inactivity.
 
@@ -153,8 +271,32 @@ Set to 0 not to unload tabs.</string>
         </item>
         <item row="3" column="1">
          <layout class="QHBoxLayout" name="horizontalLayoutEncryptedExpireSeconds">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QSpinBox" name="spinBoxExpireEncryptedTabSeconds">
+            <property name="styleSheet">
+             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; min-height: 24px; }</string>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Timeout in seconds for encrypted tabs to require password again.
 
@@ -195,6 +337,15 @@ Set to 0 to disable globally.</string>
         </item>
         <item row="4" column="1">
          <widget class="QLineEdit" name="lineEditEditor">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }</string>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>320</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string>External editor command (%1 is file to edit).
   Examples:
@@ -220,6 +371,15 @@ Set to 0 to disable globally.</string>
         </item>
         <item row="0" column="1">
          <widget class="QComboBox" name="comboBoxClipboardTab">
+          <property name="styleSheet">
+           <string notr="true">QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF; }</string>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>240</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string>Name of tab that will automatically store new clipboard content.
 
@@ -234,6 +394,9 @@ Leave empty to disable automatic storing.</string>
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxEditCtrlReturn">
+        <property name="styleSheet">
+         <string notr="true">QCheckBox { spacing: 8px; }</string>
+        </property>
         <property name="toolTip">
          <string>Leave unchecked for Return key to save edited item and Ctrl+Return create new line.
 
@@ -246,6 +409,9 @@ Note: Edited items can be saved with F2 disregarding this option.</string>
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxShowSimpleItems">
+        <property name="styleSheet">
+         <string notr="true">QCheckBox { spacing: 8px; }</string>
+        </property>
         <property name="toolTip">
          <string>Show single line description of each item.
 
@@ -258,6 +424,9 @@ Use Item Preview to display whole items.</string>
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxNumberSearch">
+        <property name="styleSheet">
+         <string notr="true">QCheckBox { spacing: 8px; }</string>
+        </property>
         <property name="toolTip">
          <string>Enable searching for numbers, otherwise pressing a digit key activates item on that position</string>
         </property>
@@ -268,6 +437,9 @@ Use Item Preview to display whole items.</string>
       </item>
       <item>
        <widget class="QCheckBox" name="checkBoxSingleClickActivate">
+        <property name="styleSheet">
+         <string notr="true">QCheckBox { spacing: 8px; }</string>
+        </property>
         <property name="toolTip">
          <string/>
         </property>
@@ -278,12 +450,34 @@ Use Item Preview to display whole items.</string>
       </item>
       <item>
        <widget class="QGroupBox" name="groupBox_3">
+        <property name="styleSheet">
+         <string notr="true">QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; background-color: #FBFBFB; }
+QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top left; left: 12px; padding: 0px 4px; }</string>
+        </property>
         <property name="title">
          <string>After item is activated (double-click or Enter key), copy it to clipboard and ...</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <property name="spacing">
+          <number>8</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QCheckBox" name="checkBoxMove">
+           <property name="styleSheet">
+            <string notr="true">QCheckBox { spacing: 8px; }</string>
+           </property>
            <property name="toolTip">
             <string>Move item to the top of the list after it is activated</string>
            </property>
@@ -294,6 +488,9 @@ Use Item Preview to display whole items.</string>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBoxActivateCloses">
+           <property name="styleSheet">
+            <string notr="true">QCheckBox { spacing: 8px; }</string>
+           </property>
            <property name="toolTip">
             <string>Close main window after item is activated</string>
            </property>
@@ -304,6 +501,9 @@ Use Item Preview to display whole items.</string>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBoxActivateFocuses">
+           <property name="styleSheet">
+            <string notr="true">QCheckBox { spacing: 8px; }</string>
+           </property>
            <property name="toolTip">
             <string>Focus last window after item is activated</string>
            </property>
@@ -314,6 +514,9 @@ Use Item Preview to display whole items.</string>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBoxActivatePastes">
+           <property name="styleSheet">
+            <string notr="true">QCheckBox { spacing: 8px; }</string>
+           </property>
            <property name="toolTip">
             <string>Paste to current window after item is activated</string>
            </property>

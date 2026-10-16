@@ -169,7 +169,7 @@ NotificationBasicWidget::NotificationBasicWidget(NotificationBasic *parent)
     : m_parent(parent)
 {
     m_layout = new QGridLayout(this);
-    m_layout->setContentsMargins({8,8,8,8});
+    m_layout->setContentsMargins({12,12,12,12});
 
     m_iconLabel = new QLabel(this);
     m_iconLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -184,6 +184,24 @@ NotificationBasicWidget::NotificationBasicWidget(NotificationBasic *parent)
     setAttribute(Qt::WA_ShowWithoutActivating);
 
     initSingleShotTimer( &m_timer, 0, this, &NotificationBasicWidget::onTimeout );
+
+    // Win11 Fluent 2 notification surface. Uses QPalette roles so the colors
+    // follow the theme palette (light/dark).
+    QPalette pal = palette();
+    pal.setColor(QPalette::Window, pal.color(QPalette::ToolTipBase));
+    pal.setColor(QPalette::WindowText, pal.color(QPalette::ToolTipText));
+    setPalette(pal);
+
+    // Fluent OverlayCornerRadius (8px) with 1px ControlStrokeColorDefault
+    // border and shadow-16 depth for the flyout elevation level.
+    // Rounded corners require a frameless/tooltip window, which is already set
+    // via Qt::ToolTip flag. The border is drawn by paintEvent, not by
+    // setStyleSheet, because Qt::ToolTip windows don't reliably render
+    // stylesheet borders on all platforms.
+    const auto borderColor = pal.color(QPalette::ToolTipBase).lightness() > 100
+            ? QColor(0xE5, 0xE5, 0xE5)   // light: ControlStrokeColorDefault
+            : QColor(0x33, 0x33, 0x33);  // dark:  ControlStrokeColorDefault
+    setProperty("win11BorderColor", borderColor);
 }
 
 void NotificationBasicWidget::setTitle(const QString &title)
@@ -328,14 +346,26 @@ void NotificationBasicWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter p(this);
+    p.setRenderHint(QPainter::Antialiasing);
 
-    // black outer border
-    p.setPen(Qt::black);
-    p.drawRect(rect().adjusted(0, 0, -1, -1));
+    // Win11 Fluent 2 notification surface: OverlayCornerRadius (8px) with
+    // 1px ControlStrokeColorDefault border. The background is already filled
+    // by QWidget::paintEvent via the QPalette::Window color.
+    const QRectF contentRect = rect();
+    const qreal radius = 8.0;
 
-    // light inner border
-    p.setPen( palette().color(QPalette::Window).lighter(300) );
-    p.drawRect(rect().adjusted(1, 1, -2, -2));
+    QPen borderPen;
+    QColor borderColor = property("win11BorderColor").value<QColor>();
+    if (!borderColor.isValid()) {
+        borderColor = palette().color(QPalette::ToolTipBase).lightness() > 100
+                ? QColor(0xE5, 0xE5, 0xE5)
+                : QColor(0x33, 0x33, 0x33);
+    }
+    borderPen.setColor(borderColor);
+    borderPen.setWidthF(1.0);
+    p.setPen(borderPen);
+    p.setBrush(Qt::NoBrush);
+    p.drawRoundedRect(contentRect.adjusted(0.5, 0.5, -0.5, -0.5), radius, radius);
 }
 
 void NotificationBasicWidget::showEvent(QShowEvent *event)

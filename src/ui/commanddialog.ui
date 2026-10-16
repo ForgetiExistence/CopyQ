@@ -13,7 +13,149 @@
   <property name="windowTitle">
    <string>Commands</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+QDialog {
+    background-color: #F3F3F3;
+}
+QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 32px;
+    min-width: 100px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QPushButton:hover {
+    background-color: #F6F6F6;
+}
+QPushButton:pressed {
+    background-color: #F0F0F0;
+}
+QPushButton:disabled {
+    color: #9E9E9E;
+    background-color: #F7F7F7;
+    border: 1px solid #EBEBEB;
+}
+QPushButton:default {
+    background-color: #0078D4;
+    color: #FFFFFF;
+    border: 1px solid #0078D4;
+}
+QPushButton:default:hover {
+    background-color: #106EBE;
+    border: 1px solid #106EBE;
+}
+QPushButton:default:pressed {
+    background-color: #005A9E;
+    border: 1px solid #005A9E;
+}
+QLineEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 32px;
+    background-color: #FFFFFF;
+}
+QLineEdit:focus {
+    border: 1px solid #0078D4;
+    border-bottom: 2px solid #0078D4;
+}
+QCheckBox {
+    spacing: 8px;
+}
+QRadioButton {
+    spacing: 8px;
+}
+QListWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+QTreeWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+QTableWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+QGroupBox {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #FBFBFB;
+}
+QTabWidget::pane {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+QTabBar::tab {
+    border-radius: 4px;
+    padding: 6px 16px;
+    margin-right: 4px;
+}
+QTabBar::tab:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+QScrollBar::add-line, QScrollBar::sub-line {
+    border: none;
+    background: none;
+    width: 0px;
+    height: 0px;
+}
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+QMenu {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    padding: 4px;
+    background-color: #FBFBFB;
+}
+QComboBox {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 32px;
+    background-color: #FFFFFF;
+}
+   </string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item>
     <widget class="QLabel" name="label_11">
      <property name="sizePolicy">
@@ -28,6 +170,9 @@
      <property name="wordWrap">
       <bool>true</bool>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: #6B6B6B; font-size: 13px;</string>
+     </property>
     </widget>
    </item>
    <item>
@@ -41,10 +186,16 @@
      <property name="focusPolicy">
       <enum>Qt::WheelFocus</enum>
      </property>
+     <property name="minimumHeight">
+      <number>200</number>
+     </property>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <property name="spacing">
+      <number>8</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
@@ -60,6 +211,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonLoadCommands">
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>120</number>
+       </property>
        <property name="text">
         <string>&amp;Load Commands…</string>
        </property>
@@ -69,6 +226,12 @@
       <widget class="QPushButton" name="pushButtonSaveCommands">
        <property name="enabled">
         <bool>false</bool>
+       </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>120</number>
        </property>
        <property name="text">
         <string>Sa&amp;ve Selected…</string>
@@ -80,6 +243,12 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>120</number>
+       </property>
        <property name="text">
         <string>Copy Selected</string>
        </property>
@@ -87,6 +256,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonPasteCommands">
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>120</number>
+       </property>
        <property name="text">
         <string>Paste Commands</string>
        </property>
@@ -98,6 +273,9 @@
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">button-layout: 1;</string>
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>

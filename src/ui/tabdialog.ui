@@ -16,7 +16,119 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: #F3F3F3;
+}
+
+QLineEdit, QTextEdit, QPlainTextEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    background-color: #FFFFFF;
+    min-width: 200px;
+    min-height: 24px;
+}
+
+QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 32px;
+    min-width: 80px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+
+QPushButton:hover {
+    background-color: #F5F5F5;
+}
+
+QPushButton:pressed {
+    background-color: #EFEFEF;
+}
+
+QComboBox {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 24px;
+}
+
+QCheckBox, QRadioButton {
+    spacing: 8px;
+}
+
+QGroupBox {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    margin-top: 12px;
+    padding: 12px;
+}
+
+QListWidget, QTreeWidget, QTableWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+}
+
+QTabWidget::pane {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    border-radius: 4px;
+    padding: 6px 16px;
+    margin-right: 4px;
+}
+
+QTabBar::tab:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+
+QMenu {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    padding: 4px;
+}
+
+QLabel {
+    background: transparent;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item>
     <widget class="QLabel" name="label_2">
      <property name="sizePolicy">
@@ -37,6 +149,9 @@ Use &lt;b&gt;/&lt;/b&gt; as path separator in tree view tab layout.</string>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>8</number>
+     </property>
      <item>
       <widget class="QLabel" name="label">
        <property name="text">

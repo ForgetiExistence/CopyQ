@@ -1683,6 +1683,20 @@ void MainWindow::updateWindowTransparency(bool mouseOver)
     setWindowOpacity(opacity / 100.0);
 }
 
+void MainWindow::updateNativeWindowStyle()
+{
+    const auto platform = platformNativeInterface();
+    if ( !platform->canStyleWindowFrame() )
+        return;
+
+    // Derive the title bar color from the theme background so it matches the
+    // rest of the window (same threshold as Theme::decorateMainWindow()).
+    const bool dark = m_options.windowsDarkTitlebar
+            || theme().color(QStringLiteral("bg")).lightness() < 100;
+
+    platform->applyWindowFrameStyle( winId(), dark, m_options.windowsMicaBackdrop );
+}
+
 ClipboardBrowserPlaceholder *MainWindow::getPlaceholder(int index) const
 {
     return qobject_cast<ClipboardBrowserPlaceholder*>( ui->tabWidget->widget(index) );
@@ -3128,6 +3142,16 @@ void MainWindow::loadSettings(QSettings &settings, AppConfig *appConfig)
     ui->scrollAreaItemPreview->setObjectName("ClipboardBrowser");
     theme().decorateItemPreview(ui->scrollAreaItemPreview);
 
+    // Win11 Fluent 2 main window surface. decorateMainWindow() applies the
+    // theme palette and stylesheet (search bar, tab bar, tool bar, menus).
+    // Here we ensure the central widget inherits the Win11 background so the
+    // area behind the stacked widget doesn't show the native default.
+    ui->tabWidget->setAutoFillBackground(true);
+    QPalette win11Pal = ui->tabWidget->palette();
+    win11Pal.setColor(QPalette::Window, theme().color(QStringLiteral("bg")));
+    win11Pal.setColor(QPalette::WindowText, theme().color(QStringLiteral("fg")));
+    ui->tabWidget->setPalette(win11Pal);
+
     setUseSystemIcons( theme().useSystemIcons() );
 
     m_options.confirmExit = appConfig->option<Config::confirm_exit>();
@@ -3223,6 +3247,10 @@ void MainWindow::loadSettings(QSettings &settings, AppConfig *appConfig)
     flags.set(Qt::FramelessWindowHint, frameless);
     flags.apply();
     updateSizeGrip(frameless);
+
+    m_options.windowsDarkTitlebar = appConfig->option<Config::windows_dark_titlebar>();
+    m_options.windowsMicaBackdrop = appConfig->option<Config::windows_mica_backdrop>();
+    updateNativeWindowStyle();
 
     Q_ASSERT( ui->tabWidget->count() > 0 );
 

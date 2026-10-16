@@ -16,6 +16,96 @@
    <property name="widgetResizable">
     <bool>true</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 24px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+
+QLineEdit, QTextEdit, QPlainTextEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    background-color: #FFFFFF;
+}
+
+QComboBox {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 24px;
+}
+
+QSpinBox {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 24px;
+    min-width: 72px;
+}
+
+QCheckBox, QRadioButton {
+    spacing: 8px;
+}
+
+QGroupBox {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    margin-top: 12px;
+    padding: 12px;
+}
+
+QListWidget, QTreeWidget, QTableWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+}
+
+QTabWidget::pane {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    border-radius: 4px;
+    padding: 6px 16px;
+    margin-right: 4px;
+}
+
+QTabBar::tab:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+}
+
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+
+QMenu {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    padding: 4px;
+}
+
+QDialog {
+    background-color: #F3F3F3;
+}</string>
+   </property>
    <widget class="QWidget" name="scrollAreaWidgetContents_6">
     <property name="geometry">
      <rect>
@@ -26,6 +116,21 @@
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_23">
+     <property name="spacing">
+      <number>8</number>
+     </property>
+     <property name="leftMargin">
+      <number>12</number>
+     </property>
+     <property name="topMargin">
+      <number>12</number>
+     </property>
+     <property name="rightMargin">
+      <number>12</number>
+     </property>
+     <property name="bottomMargin">
+      <number>12</number>
+     </property>
      <item>
       <spacer name="horizontalSpacer_26">
        <property name="orientation">
@@ -41,6 +146,21 @@
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_13">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <spacer name="verticalSpacer_11">
          <property name="orientation">
@@ -56,12 +176,42 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_16">
+         <property name="spacing">
+          <number>8</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QGroupBox" name="groupBox_9">
            <property name="title">
             <string>Show/Hide</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QCheckBox" name="checkBoxHideTabs">
               <property name="toolTip">
@@ -128,6 +278,21 @@
             <string>Layout and Transparency</string>
            </property>
            <layout class="QFormLayout" name="formLayout">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <property name="fieldGrowthPolicy">
              <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
             </property>
@@ -153,6 +318,21 @@
             </item>
             <item row="3" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <property name="spacing">
+               <number>8</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
                <widget class="QSpinBox" name="spinBoxTransparencyFocused">
                 <property name="toolTip">
@@ -195,6 +375,21 @@ Note: This is not supported on all systems.</string>
             </item>
             <item row="4" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout">
+              <property name="spacing">
+               <number>8</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
                <widget class="QSpinBox" name="spinBoxTransparencyUnfocused">
                 <property name="toolTip">

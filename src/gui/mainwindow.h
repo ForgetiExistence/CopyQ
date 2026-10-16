@@ -103,6 +103,9 @@ struct MainWindowOptions {
     bool trayItemPaste = true;
 
     QString clipboardTab;
+
+    bool windowsDarkTitlebar = false;
+    bool windowsMicaBackdrop = false;
 };
 
 /**
@@ -489,6 +492,7 @@ private:
     void doSaveTabPositions(AppConfig *appConfig);
     void updateSizeGrip(bool frameless);
     void placeSizeGrip();
+    void updateNativeWindowStyle();
     void tabsMoved(const QString &oldPrefix, const QString &newPrefix);
     void tabBarMenuRequested(QPoint pos, int tab);
     void tabTreeMenuRequested(QPoint pos, const QString &groupPath);

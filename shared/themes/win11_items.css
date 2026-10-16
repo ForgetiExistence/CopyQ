@@ -1,0 +1,114 @@
+/* ==========================================================================
+ * CopyQ -- Windows 11 / Fluent 2 : items.css override
+ *
+ * This is the companion to win11_light.ini / win11_dark.ini.
+ * Install: copy BOTH this file and the .ini you want into
+ *          <config>/themes/   (find the dir with:  copyq info config )
+ *          then pick the theme in Configuration -> Appearance.
+ *
+ * It is selected with  css_template_items=win11_items  (set in both .ini
+ * files), so it does NOT clobber the shipped items.css used by other themes.
+ *
+ * Fluent rules applied here:
+ *   - 4px ControlCornerRadius on list rows
+ *   - state fills: rest / hover (subtle fill) / selected (accent fill)
+ *   - Fluent two-tone focus ring on the current row
+ *   - plugin indicators tinted with the Windows accent
+ * ========================================================================== */
+
+#ClipboardBrowser{
+    ;${font}
+    ;color: ${fg}
+    ;background: ${bg}
+}
+
+/* --- list rows: 4px ControlCornerRadius, no per-row hairline -------------- */
+#ClipboardBrowser::item{
+    ;border-radius: 4px
+}
+
+/* Alternate rows keep the alternate surface but the SAME text colour:
+   alt_fg is not a defined theme option, so it resolves to transparent and
+   would make alternate-row text invisible. */
+#ClipboardBrowser::item:alternate:!hover:!selected{
+    ;color: ${fg}
+    ;background: ${alt_bg}
+    ;${alt_item_css}
+}
+
+/* Selected row: WinUI AccentFillColorDefault. */
+#ClipboardBrowser::item:selected{
+    ;color: ${sel_fg}
+    ;background: ${sel_bg}
+    ;${sel_item_css}
+}
+
+#item, #item_child{
+    ;${font}
+    ;color: ${fg}
+    ;background: transparent
+}
+#item[CopyQ_selected="true"],
+#item[CopyQ_selected="true"] #item_child{
+    ;color: ${sel_fg}
+}
+
+/* --- selected but inactive: keep the fill -------------------------------- */
+${hsv_saturation_factor = 0.5}
+    #ClipboardBrowser::item:selected:!active{
+        ;background: ${sel_bg}
+        ;color: ${sel_fg}
+        ;${sel_item_css}
+    }
+${hsv_saturation_factor = 1}
+
+/* --- hover: WinUI subtle fill (ControlFillColorSecondary) ---------------- */
+${hsv_value_factor = 0.9}
+    #ClipboardBrowser::item:hover:selected{
+        ;background: ${sel_bg}
+        ;${hover_item_css}
+    }
+    #ClipboardBrowser::item:hover:!selected{
+        ;background: ${alt_bg}
+        ;color: ${fg}
+        ;${hover_item_css}
+    }
+${hsv_value_factor = 1}
+
+/* --- focus: Fluent two-tone ring (2px outer accent) on the current row ---- */
+/* The view must not draw its own dotted outline. */
+#ClipboardBrowser::focus{ outline: 0 }
+
+/* cur_item_css is appended last; it must not re-declare `border` or it would
+   override the 2px ring. The .ini sets it to a radius only. */
+#ClipboardBrowser::item:focus{
+    ;border: 2px solid ${sel_bg}
+    ;${cur_item_css}
+}
+
+/* --- per-theme item fragments (defined in the .ini) ---------------------- */
+#ClipboardBrowser{ ${item_css} }
+#ClipboardBrowser::item:alternate:!hover:!selected{ ${alt_item_css} }
+#ClipboardBrowser::item:selected{ ${sel_item_css} }
+
+/* --- plugin indicators: Windows accent / neutral ------------------------- */
+ItemPinned{
+    ;qproperty-pinnedIndicatorColor: rgba(0, 103, 192, 255)
+    ;qproperty-pinnedIndicatorWidth: 8
+}
+ItemNotes{
+    ;qproperty-notesIndicatorColor: rgba(128, 128, 128, 180)
+    ;qproperty-notesIndicatorWidth: 16
+}
+
+/* --- editor status bar --------------------------------------------------- */
+#editor_status_bar *{
+    ;background: ${edit_bg}
+    ;color: ${edit_fg}
+    ;border: none
+}
+
+${css:tooltip}
+
+/* Windows 11 thin overlay scrollbars (scrollbar.css lives in this dir). */
+${css:scrollbar}

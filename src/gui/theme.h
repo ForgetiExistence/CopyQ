@@ -54,6 +54,20 @@ public:
     /** Decorate main window. */
     void decorateMainWindow(QWidget *mainWindow) const;
 
+    /**
+     * Apply the theme font and palette to the whole application
+     * (QApplication::setFont/setPalette) so that dialogs and other
+     * top-level widgets, which get no per-widget theme, are themed too.
+     */
+    void applyApplicationPalette() const;
+
+    /**
+     * Seed the Qt default palette with the Windows 11 surface ramp so that the
+     * default_* color variables resolve to Win11 values before any theme is
+     * loaded. Call once at startup, before constructing a Theme.
+     */
+    static void applyWin11PaletteDefaults();
+
     /** Decorate scroll area (toggle scroll bar). */
     void decorateScrollArea(QAbstractScrollArea *scrollArea) const;
 
@@ -72,6 +86,14 @@ public:
     QFont themeFontFromString(const QString &fontString) const;
 
     bool isAntialiasingEnabled() const;
+
+    /**
+     * Return the OS light/dark preference.
+     *
+     * Uses QStyleHints::colorScheme() on Qt 6.5+, falling back to the
+     * Windows "AppsUseLightTheme" registry value, and finally to light.
+     */
+    static bool isSystemDarkTheme();
 
     void resetTheme();
 

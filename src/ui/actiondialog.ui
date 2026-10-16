@@ -13,11 +13,50 @@
   <property name="windowTitle">
    <string>Action Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string>QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid #E5E5E5; background-color: #FBFBFB; }
+QLineEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
+QTextEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
+QPlainTextEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
+QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; }
+QCheckBox { spacing: 8px; }
+QRadioButton { spacing: 8px; }
+QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; }
+QListWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
+QTreeWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
+QTableWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
+QTabWidget::pane { border: 1px solid #E5E5E5; border-radius: 8px; }
+QTabBar::tab { border-radius: 4px; padding: 6px 16px; margin-right: 4px; }
+QTabBar::tab:selected { background-color: #0078D4; color: #FFFFFF; }
+QScrollBar { border: none; background: transparent; width: 8px; margin: 0; }
+QScrollBar::handle { background: #C0C0C0; border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:hover { background: #A0A0A0; }
+QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }
+QDialog { background-color: #F3F3F3; }</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item>
     <widget class="QComboBox" name="comboBoxCommands">
      <property name="insertPolicy">
       <enum>QComboBox::NoInsert</enum>
+     </property>
+     <property name="minimumHeight">
+      <number>32</number>
      </property>
     </widget>
    </item>
@@ -42,14 +81,29 @@
      <property name="focusPolicy">
       <enum>Qt::WheelFocus</enum>
      </property>
+     <property name="minimumHeight">
+      <number>32</number>
+     </property>
     </widget>
    </item>
    <item>
     <layout class="QFormLayout" name="formLayout_3">
      <property name="verticalSpacing">
-      <number>0</number>
+      <number>8</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>8</number>
      </property>
      <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
       <number>0</number>
      </property>
      <item row="0" column="0">
@@ -77,6 +131,12 @@
        <property name="toolTip">
         <string>Send data of given media type to standard input of command (leave empty to turn off)</string>
        </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>160</number>
+       </property>
       </widget>
      </item>
      <item row="2" column="1">
@@ -87,12 +147,21 @@
        <property name="editable">
         <bool>true</bool>
        </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>160</number>
+       </property>
       </widget>
      </item>
      <item row="1" column="0" colspan="2">
       <widget class="QPlainTextEdit" name="inputText">
        <property name="tabChangesFocus">
         <bool>true</bool>
+       </property>
+       <property name="minimumHeight">
+        <number>80</number>
        </property>
       </widget>
      </item>
@@ -115,6 +184,12 @@
        <property name="text">
         <string>\n</string>
        </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>120</number>
+       </property>
       </widget>
      </item>
      <item row="4" column="0">
@@ -134,6 +209,12 @@
        </property>
        <property name="editable">
         <bool>true</bool>
+       </property>
+       <property name="minimumHeight">
+        <number>32</number>
+       </property>
+       <property name="minimumWidth">
+        <number>160</number>
        </property>
       </widget>
      </item>

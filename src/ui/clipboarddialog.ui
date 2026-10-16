@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>560</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,174 @@
   <property name="windowTitle">
    <string>Clipboard Content</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: #F3F3F3;
+}
+
+QLabel {
+    color: #444444;
+}
+
+QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 32px;
+    min-width: 100px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QPushButton:hover {
+    background-color: #F5F5F5;
+}
+QPushButton:pressed {
+    background-color: #E5E5E5;
+}
+
+QDialogButtonBox QPushButton {
+    border-radius: 4px;
+    padding: 5px 12px;
+    min-height: 32px;
+    min-width: 100px;
+    border: 1px solid #E5E5E5;
+    background-color: #FBFBFB;
+}
+QDialogButtonBox QPushButton:hover {
+    background-color: #F5F5F5;
+}
+QDialogButtonBox QPushButton:pressed {
+    background-color: #E5E5E5;
+}
+
+QLineEdit, QTextEdit, QPlainTextEdit {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    background-color: #FFFFFF;
+}
+
+QComboBox {
+    border-radius: 4px;
+    border: 1px solid #D1D1D1;
+    padding: 5px 8px;
+    min-height: 24px;
+    background-color: #FFFFFF;
+}
+
+QCheckBox, QRadioButton {
+    spacing: 8px;
+}
+
+QGroupBox {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #FBFBFB;
+}
+
+QGroupBox#group1, QGroupBox#group2 {
+    border: none;
+    background-color: transparent;
+    margin-top: 0;
+    padding: 0;
+}
+
+QListWidget, QTreeWidget, QTableWidget {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+
+QTabWidget::pane {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+QTabBar::tab {
+    border-radius: 4px;
+    padding: 6px 16px;
+    margin-right: 4px;
+}
+QTabBar::tab:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+
+QSplitter::handle:horizontal {
+    background-color: #E5E5E5;
+    width: 1px;
+    margin: 0;
+}
+
+QScrollArea {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+}
+
+QScrollBar {
+    border: none;
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+QScrollBar::handle {
+    background: #C0C0C0;
+    border-radius: 4px;
+    min-height: 24px;
+    min-width: 24px;
+}
+QScrollBar::handle:hover {
+    background: #A0A0A0;
+}
+QScrollBar::add-line, QScrollBar::sub-line {
+    border: none;
+    background: none;
+    width: 0;
+    height: 0;
+}
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+
+QMenu {
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+    padding: 4px;
+}
+QMenu::item {
+    padding: 6px 24px 6px 12px;
+    border-radius: 4px;
+}
+QMenu::item:selected {
+    background-color: #0078D4;
+    color: #FFFFFF;
+}
+
+QToolTip {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding: 4px 8px;
+}</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item row="2" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
@@ -27,6 +194,9 @@
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Close</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
@@ -37,6 +207,12 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>320</width>
+       <height>180</height>
+      </size>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -51,9 +227,12 @@
       <property name="flat">
        <bool>true</bool>
       </property>
+      <property name="minimumWidth">
+       <number>160</number>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_1">
        <property name="spacing">
-        <number>0</number>
+        <number>8</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -79,6 +258,9 @@
        </item>
        <item>
         <widget class="QListWidget" name="listWidgetFormats">
+         <property name="minimumWidth">
+          <number>160</number>
+         </property>
          <property name="contextMenuPolicy">
           <enum>Qt::ActionsContextMenu</enum>
          </property>
@@ -90,9 +272,12 @@
       <property name="flat">
        <bool>true</bool>
       </property>
+      <property name="minimumWidth">
+       <number>240</number>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
-        <number>0</number>
+        <number>8</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -151,16 +336,16 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <property name="leftMargin">
-            <number>0</number>
+            <number>4</number>
            </property>
            <property name="topMargin">
-            <number>0</number>
+            <number>4</number>
            </property>
            <property name="rightMargin">
-            <number>0</number>
+            <number>4</number>
            </property>
            <property name="bottomMargin">
-            <number>0</number>
+            <number>4</number>
            </property>
            <item>
             <widget class="QLabel" name="labelImage">

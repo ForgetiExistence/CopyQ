@@ -236,6 +236,52 @@ HWND getLastVisibleActivePopUpOfWindow(HWND window)
     return nullptr;
 }
 
+// Windows 11 / 10 DWM window attribute constants. These are not present in
+// the Windows SDK headers targeted by this project (WINVER is pinned low in
+// winplatformwindow.h), so they are defined locally with a distinct prefix to
+// avoid clashing with newer SDK enum names.
+enum {
+    kDwmwaUseImmersiveDarkMode = 20,
+    kDwmwaWindowCornerPreference = 33,
+    kDwmwaSystemBackdropType = 38,
+};
+
+enum {
+    kDwmwcpDefault = 0,
+    kDwmwcpDoNotRound = 1,
+    kDwmwcpRound = 2,
+    kDwmwcpRoundSmall = 3,
+};
+
+enum {
+    kDwmsbtAuto = 0,
+    kDwmsbtNone = 1,
+    kDwmsbtMainWindow = 2,      // Mica
+    kDwmsbtTransientWindow = 3, // Acrylic
+    kDwmsbtTabbedWindow = 4,    // Mica Alt
+};
+
+// Resolved at runtime to avoid linking dwmapi.
+using DwmSetWindowAttributePtr = HRESULT (WINAPI *)(HWND, DWORD, LPCVOID, DWORD);
+
+DwmSetWindowAttributePtr dwmSetWindowAttribute()
+{
+    static const auto fn = []() -> DwmSetWindowAttributePtr {
+        const HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+        return dwmapi
+            ? reinterpret_cast<DwmSetWindowAttributePtr>(
+                  GetProcAddress(dwmapi, "DwmSetWindowAttribute") )
+            : nullptr;
+    }();
+    return fn;
+}
+
+void setDwmAttribute(HWND window, DWORD attribute, LPCVOID value, DWORD size)
+{
+    if (const auto fn = dwmSetWindowAttribute())
+        fn(window, attribute, value, size);
+}
+
 bool isWindowCloaked(HWND window)
 {
     // Resolved at runtime to avoid linking dwmapi.
@@ -380,6 +426,35 @@ bool WinPlatform::setPreventScreenCapture(WId winId, bool prevent)
 
     return SetWindowDisplayAffinity(
         window, prevent ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
+}
+
+void WinPlatform::applyWindowFrameStyle(WId winId, bool dark, bool mica)
+{
+    HWND window = reinterpret_cast<HWND>(winId);
+    if (!window)
+        return;
+
+    // Unsupported attributes simply fail on older Windows, so no version
+    // check is needed.
+
+    // Dark title bar (Windows 10 1809+, DWMWA_USE_IMMERSIVE_DARK_MODE).
+    const BOOL darkValue = dark ? TRUE : FALSE;
+    setDwmAttribute(window, kDwmwaUseImmersiveDarkMode,
+                    &darkValue, sizeof(darkValue));
+
+    // Rounded corners are the default for framed windows, but applying this
+    // explicitly also covers frameless windows (Windows 11 22H2+).
+    const int corner = kDwmwcpRound;
+    setDwmAttribute(window, kDwmwaWindowCornerPreference,
+                    &corner, sizeof(corner));
+
+    // Mica backdrop (Windows 11). Qt must leave the client area unpainted,
+    // otherwise the widget background covers the DWM backdrop.
+    if (mica) {
+        const int backdrop = kDwmsbtMainWindow;
+        setDwmAttribute(window, kDwmwaSystemBackdropType,
+                        &backdrop, sizeof(backdrop));
+    }
 }
 
 QCoreApplication *WinPlatform::createConsoleApplication(int &argc, char **argv)

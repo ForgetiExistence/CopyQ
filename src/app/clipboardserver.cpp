@@ -800,9 +800,31 @@ void ClipboardServer::loadSettings(AppConfig *appConfig)
         }
     }
 
+    // Seed the default_* palette roles with the Windows 11 surface ramp so that
+    // widgets styled only through the application palette (dialogs, toolbars)
+    // resolve Win11 colors even when the active theme does not override them.
+    // Must run after the app style is set but before the theme is loaded.
+    m_sharedData->theme.applyWin11PaletteDefaults();
+
     settings.beginGroup(QStringLiteral("Theme"));
     m_sharedData->theme.loadTheme(settings);
     settings.endGroup();
+
+    // Optionally follow the OS light/dark preference. This must run before
+    // MainWindow::loadSettings() so that decorateMainWindow() and the window
+    // title bar pick up the correct scheme.
+    if ( appConfig->option<Config::follow_system_theme>() ) {
+        const QString themeName = Theme::isSystemDarkTheme()
+                ? QStringLiteral("win11_dark") : QStringLiteral("win11_light");
+        const QString themeFile = findThemeFile(themeName + ".ini");
+        if ( !themeFile.isEmpty() ) {
+            QSettings systemThemeSettings(themeFile, QSettings::IniFormat);
+            m_sharedData->theme.loadTheme(systemThemeSettings);
+        } else {
+            log( QStringLiteral("System theme file not found: %1.ini").arg(themeName),
+                 LogWarning );
+        }
+    }
 
     m_sharedData->editor = appConfig->option<Config::editor>();
     m_sharedData->maxItems = appConfig->option<Config::maxitems>();
@@ -825,6 +847,10 @@ void ClipboardServer::loadSettings(AppConfig *appConfig)
     m_sharedData->actions->setMaxRowCount(appConfig->option<Config::max_process_manager_rows>());
 
     m_wnd->loadSettings(settings, appConfig);
+
+    // Theme fonts and colors for dialogs and other top-level widgets, which
+    // do not receive the per-widget stylesheet of the main window.
+    m_sharedData->theme.applyApplicationPalette();
 
     m_textTabSize = appConfig->option<Config::text_tab_width>();
     m_saveOnDeactivate = appConfig->option<Config::save_on_app_deactivated>();
