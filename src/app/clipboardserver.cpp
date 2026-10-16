@@ -702,6 +702,39 @@ void ClipboardServer::createGlobalShortcut(const QKeySequence &shortcut, const C
 #endif
 }
 
+void ClipboardServer::setToggleWindowShortcut(AppConfig *appConfig)
+{
+#ifndef COPYQ_GLOBAL_SHORTCUTS
+    Q_UNUSED(appConfig)
+#else
+    if (m_toggleWindowShortcut)
+        m_toggleWindowShortcut->deleteLater();
+
+    const QString shortcutText = appConfig->option<Config::toggle_window_shortcut>();
+    if ( shortcutText.isEmpty() )
+        return;
+
+    const QKeySequence shortcut(shortcutText, QKeySequence::PortableText);
+    if ( shortcut.isEmpty() ) {
+        log( QStringLiteral("Invalid shortcut for toggling main window: \"%1\"")
+             .arg(shortcutText), LogWarning );
+        return;
+    }
+
+    auto s = new QxtGlobalShortcut(shortcut, QStringLiteral("toggle_window_shortcut"), this);
+    if (!s->isValid()) {
+        log( QStringLiteral("Failed to set global shortcut \"%1\" for toggling main window.")
+             .arg(shortcut.toString()), LogWarning );
+        delete s;
+        return;
+    }
+
+    connect( s, &QxtGlobalShortcut::activated, m_wnd, &MainWindow::toggleWindowFromGlobalShortcut );
+
+    m_toggleWindowShortcut = s;
+#endif
+}
+
 bool ClipboardServer::eventFilter(QObject *object, QEvent *ev)
 {
     const QEvent::Type type = ev->type();
@@ -893,6 +926,8 @@ void ClipboardServer::loadSettings(AppConfig *appConfig)
     m_sharedData->notifications->updateNotificationWidgets();
 
     m_updateThemeTimer.stop();
+
+    setToggleWindowShortcut(appConfig);
 
     COPYQ_LOG("Configuration loaded");
     m_loadingSettings = false;

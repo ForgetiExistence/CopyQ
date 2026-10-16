@@ -384,6 +384,15 @@ public:
     /** Show/hide main window. Return true only if window is shown. */
     bool toggleVisible();
 
+public slots:
+    /**
+     * Show main window if hidden, hide it if visible.
+     *
+     * Used by the global "toggle_window_shortcut" hotkey, which can be
+     * triggered at any time, even while the window is not focused.
+     */
+    void toggleWindowFromGlobalShortcut();
+
     /**
      * Like toggleVisible() but hide window if visible and not focused, which
      * seems more reasonable when using mouse.

@@ -62,6 +62,9 @@ public:
     /** Load settings. */
     void loadSettings(AppConfig *appConfig);
 
+    /** Register global shortcut for showing/hiding the main window. */
+    void setToggleWindowShortcut(AppConfig *appConfig);
+
 signals:
     void closeClients();
 
@@ -135,6 +138,7 @@ private:
     bool m_exitting = false;
     bool m_ignoreNewConnections = false;
     QMap<QxtGlobalShortcut*, Command> m_shortcutActions;
+    QPointer<QxtGlobalShortcut> m_toggleWindowShortcut;
     QTimer m_ignoreKeysTimer;
     QTimer m_updateThemeTimer;
     uint m_monitorCommandsStateHash = 0;

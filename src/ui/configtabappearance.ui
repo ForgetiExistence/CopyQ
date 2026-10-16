@@ -398,6 +398,16 @@ QLabel { background: transparent; }</string>
            </property>
           </widget>
          </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkBoxWindowsMicaBackdrop">
+           <property name="toolTip">
+            <string>Enable the Windows 11 Mica system backdrop for the main window (requires Windows 11)</string>
+           </property>
+           <property name="text">
+            <string>Enable Windows 11 &amp;Mica backdrop</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -535,6 +545,7 @@ QLabel { background: transparent; }</string>
   <tabstop>checkBoxScrollbars</tabstop>
   <tabstop>checkBoxSystemIcons</tabstop>
   <tabstop>checkBoxAntialias</tabstop>
+  <tabstop>checkBoxWindowsMicaBackdrop</tabstop>
   <tabstop>checkBoxStyleMainWindow</tabstop>
   <tabstop>comboBoxThemes</tabstop>
   <tabstop>pushButtonLoadTheme</tabstop>

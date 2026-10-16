@@ -149,6 +149,11 @@ void ConfigTabAppearance::onFontButtonClicked()
     fontButtonClicked(sender());
 }
 
+QCheckBox *ConfigTabAppearance::checkBoxWindowsMicaBackdrop() const
+{
+    return ui->checkBoxWindowsMicaBackdrop;
+}
+
 void ConfigTabAppearance::onColorButtonClicked()
 {
     Q_ASSERT(sender() != nullptr);

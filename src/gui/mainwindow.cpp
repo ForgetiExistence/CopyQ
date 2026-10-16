@@ -3395,6 +3395,14 @@ bool MainWindow::toggleVisible()
     return true;
 }
 
+void MainWindow::toggleWindowFromGlobalShortcut()
+{
+    if (!isMinimized() && isVisible())
+        hideWindow();
+    else
+        showWindow();
+}
+
 void MainWindow::toggleVisibleFromTray()
 {
     if (!isMinimized() && isVisible()) {

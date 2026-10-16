@@ -16,6 +16,7 @@ class ItemDelegate;
 class ItemFactory;
 class Option;
 class QAbstractScrollArea;
+class QCheckBox;
 class QSettings;
 
 class ConfigTabAppearance final : public QWidget
@@ -33,6 +34,8 @@ public:
     void setEditor(const QString &editor) { m_editor = editor; }
 
     void createPreview(ItemFactory *itemFactory);
+
+    QCheckBox *checkBoxWindowsMicaBackdrop() const;
 
 protected:
     void showEvent(QShowEvent *event) override;

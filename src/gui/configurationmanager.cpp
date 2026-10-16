@@ -227,6 +227,7 @@ void ConfigurationManager::updateOptionsVisibility()
     m_tabGeneral->checkBoxAutostart->setVisible( platform->canAutostart() );
     m_tabGeneral->checkBoxPreventScreenCapture->setVisible(
         platform->canPreventScreenCapture() );
+    m_tabAppearance->checkBoxWindowsMicaBackdrop()->setVisible( platform->canStyleWindowFrame() );
 
 #ifdef WITH_QCA_ENCRYPTION
     m_tabGeneral->checkBoxEncryptTabs->setVisible(true);
@@ -293,6 +294,7 @@ void ConfigurationManager::initOptions()
     bind<Config::hide_toolbar>(m_tabLayout->checkBoxHideToolbar);
     bind<Config::hide_toolbar_labels>(m_tabLayout->checkBoxHideToolbarLabels);
     bind<Config::frameless_window>(m_tabLayout->checkBoxFramelessWindow);
+    bind<Config::windows_mica_backdrop>(m_tabAppearance->checkBoxWindowsMicaBackdrop());
     bind<Config::disable_tray>(m_tabTray->checkBoxDisableTray);
     bind<Config::hide_main_window>(m_tabLayout->checkBoxHideWindow);
     bind<Config::tab_tree>(m_tabLayout->checkBoxTabTree);

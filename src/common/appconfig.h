@@ -176,7 +176,7 @@ struct close_on_unfocus : Config<bool> {
 
 struct close_on_unfocus_delay_ms : Config<int> {
     static QString name() { return QStringLiteral("close_on_unfocus_delay_ms"); }
-    static Value defaultValue() { return 500; }
+    static Value defaultValue() { return 100; }
     static const char *description() {
         return "Delay to close the main window when unfocused/deactivated";
     }
@@ -184,7 +184,7 @@ struct close_on_unfocus_delay_ms : Config<int> {
 
 struct close_on_unfocus_extra_delay_ms : Config<int> {
     static QString name() { return QStringLiteral("close_on_unfocus_extra_delay_ms"); }
-    static Value defaultValue() { return 2000; }
+    static Value defaultValue() { return 500; }
     static const char *description() {
         return "Delay to close the main window when unfocused/deactivated"
                " after being moved/resized, or items are dragged"
@@ -574,7 +574,7 @@ struct windows_dark_titlebar : Config<bool> {
 
 struct windows_mica_backdrop : Config<bool> {
     static QString name() { return QStringLiteral("windows_mica_backdrop"); }
-    static Value defaultValue() { return false; }
+    static Value defaultValue() { return true; }
     static const char *description() {
         return "Enable the Mica system backdrop on Windows 11"
                " (the client area must not paint an opaque background)";
@@ -591,6 +591,15 @@ struct frameless_window : Config<bool> {
     static Value defaultValue() { return false; }
     static const char *description() {
         return "Hide the main window frame and title if supported by the window manager";
+    }
+};
+
+struct toggle_window_shortcut : Config<QString> {
+    static QString name() { return QStringLiteral("toggle_window_shortcut"); }
+    static Value defaultValue() { return QStringLiteral("Meta+V"); }
+    static const char *description() {
+        return "Global shortcut to show/hide the main window"
+               " (e.g. \"Meta+V\" for Win+V, empty value disables it)";
     }
 };
 
