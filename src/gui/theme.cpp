@@ -562,18 +562,22 @@ void Theme::resetTheme()
     // They default to the chrome colour so that themes which do not opt in
     // (nord, onedark, ...) keep their previous flat look. win11_light.ini and
     // win11_dark.ini override each one with the real WinUI layer value.
-    m_theme["card_bg"]         = Option("${bg}");
-    m_theme["card_stroke"]     = Option("${midlight}");
-    m_theme["divider"]         = Option("${midlight}");
-    m_theme["subtle_hover"]    = Option("${midlight}");
-    m_theme["subtle_pressed"]  = Option("${mid}");
-    m_theme["control_stroke"]  = Option("${mid}");
+    //
+    // The defaults reference the palette (default_*), not ${...}: a bare
+    // "${bg}" is not a colour expression the parser understands, so it would
+    // resolve to transparent instead of to the theme background.
+    m_theme["card_bg"]         = Option(defaultColorVarBase);
+    m_theme["card_stroke"]     = Option(defaultColorVarMidlight);
+    m_theme["divider"]         = Option(defaultColorVarMidlight);
+    m_theme["subtle_hover"]    = Option(defaultColorVarMidlight);
+    m_theme["subtle_pressed"]  = Option(defaultColorVarMid);
+    m_theme["control_stroke"]  = Option(defaultColorVarMid);
 
     // Colour of the window plane behind the widgets. Themes set this to
     // "transparent" when the Mica backdrop is on, so the compositor shows
     // through; everything layered on top (cards, chrome, menus) keeps its own
     // opaque surface.
-    m_theme["window_bg"]       = Option("${bg}");
+    m_theme["window_bg"]       = Option(defaultColorVarBase);
 
     m_theme["font"]        = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonFont : nullptr);
     m_theme["edit_font"]   = Option(win11FontString(win11MonoFont, 10), "VALUE", ui ? ui->pushButtonEditorFont : nullptr);

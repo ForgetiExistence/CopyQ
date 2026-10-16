@@ -41,13 +41,6 @@
     ;border: none
 }
 
-/* The scroll viewport must be transparent too, otherwise it paints the window
-   colour over the gaps between cards and hides the Mica backdrop. */
-#ClipboardBrowser > QWidget,
-#ClipboardBrowser QAbstractScrollArea::viewport,
-#stacked_widget{
-    ;background: transparent
-}
 
 /* --- entry card: 4px ControlCornerRadius + CardStrokeColorDefault --------- */
 #ClipboardBrowser::item{
@@ -109,12 +102,15 @@ ${hsv_value_factor = 0.9}
     }
 ${hsv_value_factor = 1}
 
-/* --- focus: Fluent two-tone ring (2px accent) on the current entry -------- */
-/* The view must not draw its own dotted outline. */
+/* --- focus: Fluent two-tone ring on the current entry --------------------- */
+/* WinUI draws focus as an outer ring in FocusStrokeColorOuter (near-black in
+   light, white in dark) wrapped around an inner ring in the surface colour,
+   with the accent outside that. The view must not draw its own dotted
+   outline. */
 #ClipboardBrowser::focus{ outline: 0 }
 
 /* cur_item_css is appended last; it must not re-declare `border` or it would
-   override the 2px ring. The .ini sets it to a radius only. */
+   override the ring. The .ini sets it to a radius only. */
 #ClipboardBrowser::item:focus{
     ;border: 2px solid ${sel_bg}
     ;${cur_item_css}
@@ -146,6 +142,3 @@ ItemNotes{
 }
 
 ${css:tooltip}
-
-/* Windows 11 thin overlay scrollbars (scrollbar.css lives in this dir). */
-${css:scrollbar}
