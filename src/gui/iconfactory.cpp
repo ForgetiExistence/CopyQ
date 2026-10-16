@@ -151,9 +151,12 @@ QPixmap pixmapFromFile(const QString &path, QSize size)
     if ( !QFile::exists(path) )
         return QPixmap();
 
-    if ( !path.endsWith(".svg", Qt::CaseInsensitive) )
-        return pixmapFromBitmapFile(path, size);
-
+    // Probe the content instead of the path suffix. The bundled icons are
+    // registered in the resource file under extensionless aliases that point
+    // at SVG files (":/images/icon" -> images/icon.svg), so a suffix test sends
+    // them to the bitmap loader, which cannot decode SVG and yields a null
+    // pixmap. An invalid renderer falls through to the bitmap loader, so
+    // non-SVG icons keep their previous behaviour.
     QSvgRenderer renderer(path);
     if ( !renderer.isValid() )
         return pixmapFromBitmapFile(path, size);
@@ -282,32 +285,21 @@ QPixmap drawFontIcon(ushort id, int w, int h, const QColor &color)
 
 QColor getDefaultIconColor(const QColor &color)
 {
-    // Win11 Fluent 2 palette uses:
-    //   Light theme: bg=#F3F3F3 (lightness ~95), text=#1A1A1A (lightness ~10)
-    //   Dark theme:  bg=#202020 (lightness ~12), text=#FFFFFF (lightness 255)
-    // The Win11 surfaces are near the edges of the lightness scale, so the
-    // old saturation+30 / lightness-140 heuristic produces washed-out icons
-    // on the light surface and invisible ones on the dark surface.
-    // Win11 icons should derive from TextFillColorPrimary on light surfaces
-    // and from TextFillColorPrimary (white) on dark surfaces, with a subtle
-    // desaturation toward the surface color for the Fluent look.
+    // The argument is the surface the icon is drawn on, so it only tells us
+    // which side of the light/dark divide we are on. Deriving the icon by
+    // offsetting that surface's own lightness does not work for Win11: the
+    // window plane is #F3F3F3 (lightness 243), so a fixed offset lands on a
+    // washed-out mid grey (#7B7B7B) instead of the near-black WinUI uses.
+    //
+    // Match WinUI TextFillColorPrimary instead: #1A1A1A (lightness 26) on
+    // light surfaces, white on dark ones. A selected surface passes the accent
+    // colour, which is dark enough in the light theme to take the dark branch
+    // and yield the on-accent white.
     QColor c = color;
     const bool isLight = c.lightness() > lightThreshold;
-
-    if (isLight) {
-        // Light surface: derive a dark, slightly desaturated icon color.
-        // Win11 TextFillColorPrimary is #1A1A1A (near-black).
-        c.setHsl(c.hue(),
-                 qMax(0, qMin(255, c.saturation() + 20)),
-                 qMax(0, qMin(255, c.lightness() - 120)));
-    } else {
-        // Dark surface: derive a light icon color.
-        // Win11 TextFillColorPrimary is #FFFFFF (white).
-        c.setHsl(c.hue(),
-                 qMax(0, qMin(255, c.saturation() + 15)),
-                 qMax(0, qMin(255, c.lightness() + 130)));
-    }
-
+    c.setHsl(c.hue(),
+             qMax(0, qMin(255, c.saturation() + (isLight ? 20 : 15))),
+             isLight ? 26 : 245);
     return c;
 }
 
