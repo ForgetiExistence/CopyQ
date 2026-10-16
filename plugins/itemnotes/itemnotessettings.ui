@@ -4,24 +4,24 @@
  <widget class="QWidget" name="ItemNotesSettings">
   <property name="styleSheet">
    <string>
-QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background: #FFFFFF; }
-QComboBox:focus, QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus { border: 1px solid #0078D4; }
-QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid #E5E5E5; background: #FBFBFB; }
-QPushButton:hover { background: #F5F5F5; }
-QPushButton:pressed { background: #E5E5E5; }
-QPushButton:default { background: #0078D4; color: #FFFFFF; border: 1px solid #0078D4; }
-QPushButton:default:hover { background: #106EBE; }
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; min-height: 24px; background: palette(base); }
+QComboBox:focus, QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus { border: 1px solid palette(highlight); }
+QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid palette(mid); background: palette(button); }
+QPushButton:hover { background: palette(alternate-base); }
+QPushButton:pressed { background: palette(mid); }
+QPushButton:default { background: palette(highlight); color: palette(highlighted-text); border: 1px solid palette(highlight); }
+QPushButton:default:hover { background: palette(highlight); }
 QCheckBox { spacing: 8px; }
-QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; background: #FFFFFF; }
+QGroupBox { border-radius: 8px; border: 1px solid palette(mid); margin-top: 12px; padding: 12px; background: palette(base); }
 QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top left; padding: 0 8px; left: 12px; }
-QListWidget, QTreeWidget, QTableWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
+QListWidget, QTreeWidget, QTableWidget { border-radius: 8px; border: 1px solid palette(mid); }
 QScrollBar:vertical { border: none; background: transparent; width: 8px; margin: 0; }
-QScrollBar::handle:vertical { background: #C0C0C0; border-radius: 4px; min-height: 24px; }
-QScrollBar::handle:vertical:hover { background: #A0A0A0; }
+QScrollBar::handle:vertical { background: palette(mid); border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:vertical:hover { background: palette(mid); }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
 QScrollBar:horizontal { border: none; background: transparent; height: 8px; margin: 0; }
-QScrollBar::handle:horizontal { background: #C0C0C0; border-radius: 4px; min-width: 24px; }
-QScrollBar::handle:horizontal:hover { background: #A0A0A0; }
+QScrollBar::handle:horizontal { background: palette(mid); border-radius: 4px; min-width: 24px; }
+QScrollBar::handle:horizontal:hover { background: palette(mid); }
 QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0; }
    </string>
   </property>

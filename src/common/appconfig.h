@@ -574,7 +574,10 @@ struct windows_dark_titlebar : Config<bool> {
 
 struct windows_mica_backdrop : Config<bool> {
     static QString name() { return QStringLiteral("windows_mica_backdrop"); }
-    static Value defaultValue() { return true; }
+    // Opt-in: Mica requires the client area to stay unpainted, which conflicts
+    // with the opaque theme background. Enabling it by default leaves the
+    // window blank on some Windows 11 setups.
+    static Value defaultValue() { return false; }
     static const char *description() {
         return "Enable the Mica system backdrop on Windows 11"
                " (the client area must not paint an opaque background)";

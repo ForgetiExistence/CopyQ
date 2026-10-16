@@ -21,11 +21,11 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }
 
 QLabel {
-    color: #444444;
+    color: palette(text);
 }
 
 QPushButton {
@@ -33,14 +33,14 @@ QPushButton {
     padding: 5px 12px;
     min-height: 32px;
     min-width: 100px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
 }
 QPushButton:hover {
-    background-color: #F5F5F5;
+    background-color: palette(alternate-base);
 }
 QPushButton:pressed {
-    background-color: #E5E5E5;
+    background-color: palette(mid);
 }
 
 QDialogButtonBox QPushButton {
@@ -48,29 +48,29 @@ QDialogButtonBox QPushButton {
     padding: 5px 12px;
     min-height: 32px;
     min-width: 100px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
 }
 QDialogButtonBox QPushButton:hover {
-    background-color: #F5F5F5;
+    background-color: palette(alternate-base);
 }
 QDialogButtonBox QPushButton:pressed {
-    background-color: #E5E5E5;
+    background-color: palette(mid);
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 
 QComboBox {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 24px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 
 QCheckBox, QRadioButton {
@@ -79,10 +79,10 @@ QCheckBox, QRadioButton {
 
 QGroupBox {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     margin-top: 12px;
     padding: 12px;
-    background-color: #FBFBFB;
+    background-color: palette(button);
 }
 
 QGroupBox#group1, QGroupBox#group2 {
@@ -94,12 +94,12 @@ QGroupBox#group1, QGroupBox#group2 {
 
 QListWidget, QTreeWidget, QTableWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }
 
 QTabWidget::pane {
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     border-radius: 8px;
 }
 QTabBar::tab {
@@ -108,20 +108,20 @@ QTabBar::tab {
     margin-right: 4px;
 }
 QTabBar::tab:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 
 QSplitter::handle:horizontal {
-    background-color: #E5E5E5;
+    background-color: palette(mid);
     width: 1px;
     margin: 0;
 }
 
 QScrollArea {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }
 
 QScrollBar {
@@ -131,13 +131,13 @@ QScrollBar {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
     min-width: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }
 QScrollBar::add-line, QScrollBar::sub-line {
     border: none;
@@ -151,7 +151,7 @@ QScrollBar::add-page, QScrollBar::sub-page {
 
 QMenu {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     padding: 4px;
 }
 QMenu::item {
@@ -159,14 +159,14 @@ QMenu::item {
     border-radius: 4px;
 }
 QMenu::item:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 
 QToolTip {
-    background-color: #FFFFFF;
-    color: #1A1A1A;
-    border: 1px solid #E5E5E5;
+    background-color: palette(base);
+    color: palette(text);
+    border: 1px solid palette(mid);
     border-radius: 4px;
     padding: 4px 8px;
 }</string>

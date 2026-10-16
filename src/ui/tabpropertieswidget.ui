@@ -17,11 +17,11 @@
    <string notr="true">/* Windows 11 Fluent Design */
 
 QWidget {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }
 
 QLabel {
-    color: #1F1F1F;
+    color: palette(text);
     background: transparent;
 }
 
@@ -30,48 +30,48 @@ QPushButton {
     padding: 5px 12px;
     min-height: 24px;
     min-width: 96px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
-    color: #1F1F1F;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
+    color: palette(text);
 }
 
 QPushButton:hover {
-    background-color: #F5F5F5;
+    background-color: palette(alternate-base);
 }
 
 QPushButton:pressed {
-    background-color: #EDEDED;
+    background-color: palette(midlight);
 }
 
 QPushButton:disabled {
-    background-color: #F3F3F3;
-    border: 1px solid #E5E5E5;
-    color: #A0A0A0;
+    background-color: palette(window);
+    border: 1px solid palette(mid);
+    color: palette(mid);
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
-    color: #1F1F1F;
+    background-color: palette(base);
+    color: palette(text);
 }
 
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
-    border: 2px solid #0078D4;
+    border: 2px solid palette(highlight);
 }
 
 QComboBox {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 24px;
-    background-color: #FFFFFF;
-    color: #1F1F1F;
+    background-color: palette(base);
+    color: palette(text);
 }
 
 QComboBox:focus {
-    border: 2px solid #0078D4;
+    border: 2px solid palette(highlight);
 }
 
 QCheckBox {
@@ -84,20 +84,20 @@ QRadioButton {
 
 QGroupBox {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     margin-top: 12px;
     padding: 12px;
-    background-color: #FBFBFB;
+    background-color: palette(button);
 }
 
 QListWidget, QTreeWidget, QTableWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }
 
 QTabWidget::pane {
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     border-radius: 8px;
 }
 
@@ -105,13 +105,13 @@ QTabBar::tab {
     border-radius: 4px;
     padding: 6px 16px;
     margin-right: 4px;
-    background-color: #F3F3F3;
-    color: #1F1F1F;
+    background-color: palette(window);
+    color: palette(text);
 }
 
 QTabBar::tab:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 
 QScrollBar {
@@ -122,24 +122,24 @@ QScrollBar {
 }
 
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }
 
 QMenu {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     padding: 4px;
-    background-color: #FBFBFB;
+    background-color: palette(button);
 }
 
 QDialog {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }
 
 QSpinBox {
@@ -147,25 +147,25 @@ QSpinBox {
     min-width: 80px;
     padding-right: 4px;
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
-    background-color: #FFFFFF;
-    color: #1F1F1F;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
+    color: palette(text);
 }
 
 QSpinBox::up-button, QSpinBox::down-button {
     subcontrol-origin: border;
     width: 16px;
     border: none;
-    background: #F3F3F3;
+    background: palette(window);
     border-radius: 2px;
 }
 
 QSpinBox::up-button:hover, QSpinBox::down-button:hover {
-    background: #E5E5E5;
+    background: palette(mid);
 }
 
 QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
-    background: #D1D1D1;
+    background: palette(mid);
 }
 
 QSpinBox::up-arrow {
@@ -174,7 +174,7 @@ QSpinBox::up-arrow {
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 5px solid #1F1F1F;
+    border-bottom: 5px solid palette(text);
 }
 
 QSpinBox::down-arrow {
@@ -183,7 +183,7 @@ QSpinBox::down-arrow {
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 5px solid #1F1F1F;
+    border-top: 5px solid palette(text);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -221,17 +221,17 @@ QSpinBox::down-arrow {
     padding: 5px 12px;
     min-height: 32px;
     min-width: 96px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
-    color: #1F1F1F;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
+    color: palette(text);
 }
 
 QPushButton:hover {
-    background-color: #F5F5F5;
+    background-color: palette(alternate-base);
 }
 
 QPushButton:pressed {
-    background-color: #EDEDED;
+    background-color: palette(midlight);
 }</string>
        </property>
        <property name="text">
@@ -252,12 +252,12 @@ QPushButton:pressed {
        </property>
        <property name="styleSheet">
         <string notr="true">QLabel {
-    color: #1F1F1F;
+    color: palette(text);
     background: transparent;
     padding: 5px 8px;
     border-radius: 4px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }</string>
        </property>
        <property name="text">
@@ -279,7 +279,7 @@ QPushButton:pressed {
        </property>
        <property name="styleSheet">
         <string notr="true">QLabel {
-    color: #1F1F1F;
+    color: palette(text);
     background: transparent;
 }</string>
        </property>
@@ -305,25 +305,25 @@ QPushButton:pressed {
     min-width: 80px;
     padding-right: 4px;
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
-    background-color: #FFFFFF;
-    color: #1F1F1F;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
+    color: palette(text);
 }
 
 QSpinBox::up-button, QSpinBox::down-button {
     subcontrol-origin: border;
     width: 16px;
     border: none;
-    background: #F3F3F3;
+    background: palette(window);
     border-radius: 2px;
 }
 
 QSpinBox::up-button:hover, QSpinBox::down-button:hover {
-    background: #E5E5E5;
+    background: palette(mid);
 }
 
 QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
-    background: #D1D1D1;
+    background: palette(mid);
 }
 
 QSpinBox::up-arrow {
@@ -332,7 +332,7 @@ QSpinBox::up-arrow {
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 5px solid #1F1F1F;
+    border-bottom: 5px solid palette(text);
 }
 
 QSpinBox::down-arrow {
@@ -341,7 +341,7 @@ QSpinBox::down-arrow {
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 5px solid #1F1F1F;
+    border-top: 5px solid palette(text);
 }</string>
        </property>
        <property name="specialValueText">
@@ -379,7 +379,7 @@ QSpinBox::down-arrow {
         <string notr="true">QCheckBox {
     spacing: 8px;
     background: transparent;
-    color: #1F1F1F;
+    color: palette(text);
 }</string>
        </property>
        <property name="text">
@@ -399,7 +399,7 @@ QSpinBox::down-arrow {
          </property>
          <property name="styleSheet">
           <string notr="true">QLabel {
-    color: #1F1F1F;
+    color: palette(text);
     background: transparent;
 }</string>
          </property>
@@ -425,25 +425,25 @@ QSpinBox::down-arrow {
     min-width: 80px;
     padding-right: 4px;
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
-    background-color: #FFFFFF;
-    color: #1F1F1F;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
+    color: palette(text);
 }
 
 QSpinBox::up-button, QSpinBox::down-button {
     subcontrol-origin: border;
     width: 16px;
     border: none;
-    background: #F3F3F3;
+    background: palette(window);
     border-radius: 2px;
 }
 
 QSpinBox::up-button:hover, QSpinBox::down-button:hover {
-    background: #E5E5E5;
+    background: palette(mid);
 }
 
 QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
-    background: #D1D1D1;
+    background: palette(mid);
 }
 
 QSpinBox::up-arrow {
@@ -452,7 +452,7 @@ QSpinBox::up-arrow {
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 5px solid #1F1F1F;
+    border-bottom: 5px solid palette(text);
 }
 
 QSpinBox::down-arrow {
@@ -461,7 +461,7 @@ QSpinBox::down-arrow {
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 5px solid #1F1F1F;
+    border-top: 5px solid palette(text);
 }</string>
          </property>
          <property name="toolTip">

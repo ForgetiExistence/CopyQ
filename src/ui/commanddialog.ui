@@ -16,50 +16,50 @@
   <property name="styleSheet">
    <string notr="true">
 QDialog {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }
 QPushButton {
     border-radius: 4px;
     padding: 5px 12px;
     min-height: 32px;
     min-width: 100px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
 }
 QPushButton:hover {
-    background-color: #F6F6F6;
+    background-color: palette(alternate-base);
 }
 QPushButton:pressed {
-    background-color: #F0F0F0;
+    background-color: palette(alternate-base);
 }
 QPushButton:disabled {
-    color: #9E9E9E;
-    background-color: #F7F7F7;
-    border: 1px solid #EBEBEB;
+    color: palette(mid);
+    background-color: palette(alternate-base);
+    border: 1px solid palette(alternate-base);
 }
 QPushButton:default {
-    background-color: #0078D4;
-    color: #FFFFFF;
-    border: 1px solid #0078D4;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
+    border: 1px solid palette(highlight);
 }
 QPushButton:default:hover {
-    background-color: #106EBE;
-    border: 1px solid #106EBE;
+    background-color: palette(highlight);
+    border: 1px solid palette(highlight);
 }
 QPushButton:default:pressed {
-    background-color: #005A9E;
-    border: 1px solid #005A9E;
+    background-color: palette(highlight);
+    border: 1px solid palette(highlight);
 }
 QLineEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 32px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 QLineEdit:focus {
-    border: 1px solid #0078D4;
-    border-bottom: 2px solid #0078D4;
+    border: 1px solid palette(highlight);
+    border-bottom: 2px solid palette(highlight);
 }
 QCheckBox {
     spacing: 8px;
@@ -69,28 +69,28 @@ QRadioButton {
 }
 QListWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }
 QTreeWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }
 QTableWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
-    background-color: #FFFFFF;
+    border: 1px solid palette(mid);
+    background-color: palette(base);
 }
 QGroupBox {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     margin-top: 12px;
     padding: 12px;
-    background-color: #FBFBFB;
+    background-color: palette(button);
 }
 QTabWidget::pane {
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     border-radius: 8px;
 }
 QTabBar::tab {
@@ -99,8 +99,8 @@ QTabBar::tab {
     margin-right: 4px;
 }
 QTabBar::tab:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 QScrollBar {
     border: none;
@@ -109,12 +109,12 @@ QScrollBar {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }
 QScrollBar::add-line, QScrollBar::sub-line {
     border: none;
@@ -127,16 +127,16 @@ QScrollBar::add-page, QScrollBar::sub-page {
 }
 QMenu {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     padding: 4px;
-    background-color: #FBFBFB;
+    background-color: palette(button);
 }
 QComboBox {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 32px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
    </string>
   </property>
@@ -171,7 +171,7 @@ QComboBox {
       <bool>true</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #6B6B6B; font-size: 13px;</string>
+      <string notr="true">color: palette(mid); font-size: 13px;</string>
      </property>
     </widget>
    </item>

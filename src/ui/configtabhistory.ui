@@ -11,23 +11,23 @@
    </rect>
   </property>
   <property name="styleSheet">
-   <string notr="true">QScrollArea#ConfigTabHistory { background-color: #F3F3F3; border: none; }
-QDialog { background-color: #F3F3F3; }
-QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid #E5E5E5; background-color: #FBFBFB; }
-QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
-QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF; }
+   <string notr="true">QScrollArea#ConfigTabHistory { background-color: palette(window); border: none; }
+QDialog { background-color: palette(window); }
+QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 24px; border: 1px solid palette(mid); background-color: palette(button); }
+QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); }
+QComboBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; min-height: 24px; background-color: palette(base); }
 QCheckBox, QRadioButton { spacing: 8px; }
-QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; background-color: #FBFBFB; }
-QListWidget, QTreeWidget, QTableWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
-QTabWidget::pane { border: 1px solid #E5E5E5; border-radius: 8px; }
+QGroupBox { border-radius: 8px; border: 1px solid palette(mid); margin-top: 12px; padding: 12px; background-color: palette(button); }
+QListWidget, QTreeWidget, QTableWidget { border-radius: 8px; border: 1px solid palette(mid); }
+QTabWidget::pane { border: 1px solid palette(mid); border-radius: 8px; }
 QTabBar::tab { border-radius: 4px; padding: 6px 16px; margin-right: 4px; }
-QTabBar::tab:selected { background-color: #0078D4; color: #FFFFFF; }
+QTabBar::tab:selected { background-color: palette(highlight); color: palette(highlighted-text); }
 QScrollBar { border: none; background: transparent; width: 8px; height: 8px; margin: 0; }
-QScrollBar::handle { background: #C0C0C0; border-radius: 4px; min-height: 24px; }
-QScrollBar::handle:hover { background: #A0A0A0; }
+QScrollBar::handle { background: palette(mid); border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:hover { background: palette(mid); }
 QScrollBar::add-line, QScrollBar::sub-line { border: none; background: none; width: 0px; height: 0px; }
 QScrollBar::add-page, QScrollBar::sub-page { background: none; }
-QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }</string>
+QMenu { border-radius: 8px; border: 1px solid palette(mid); padding: 4px; }</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>
@@ -159,7 +159,7 @@ QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }</string>
           <item>
            <widget class="QSpinBox" name="spinBoxItems">
             <property name="styleSheet">
-             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; min-height: 24px; }</string>
+             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); min-height: 24px; }</string>
             </property>
             <property name="minimumSize">
              <size>
@@ -223,7 +223,7 @@ QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }</string>
           <item>
            <widget class="QSpinBox" name="spinBoxExpireTab">
             <property name="styleSheet">
-             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; min-height: 24px; }</string>
+             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); min-height: 24px; }</string>
             </property>
             <property name="minimumSize">
              <size>
@@ -289,7 +289,7 @@ Set to 0 not to unload tabs.</string>
           <item>
            <widget class="QSpinBox" name="spinBoxExpireEncryptedTabSeconds">
             <property name="styleSheet">
-             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; min-height: 24px; }</string>
+             <string notr="true">QSpinBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); min-height: 24px; }</string>
             </property>
             <property name="minimumSize">
              <size>
@@ -338,7 +338,7 @@ Set to 0 to disable globally.</string>
         <item row="4" column="1">
          <widget class="QLineEdit" name="lineEditEditor">
           <property name="styleSheet">
-           <string notr="true">QLineEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }</string>
+           <string notr="true">QLineEdit { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); }</string>
           </property>
           <property name="minimumSize">
            <size>
@@ -372,7 +372,7 @@ Set to 0 to disable globally.</string>
         <item row="0" column="1">
          <widget class="QComboBox" name="comboBoxClipboardTab">
           <property name="styleSheet">
-           <string notr="true">QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; background-color: #FFFFFF; }</string>
+           <string notr="true">QComboBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; min-height: 24px; background-color: palette(base); }</string>
           </property>
           <property name="minimumSize">
            <size>
@@ -451,7 +451,7 @@ Use Item Preview to display whole items.</string>
       <item>
        <widget class="QGroupBox" name="groupBox_3">
         <property name="styleSheet">
-         <string notr="true">QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; background-color: #FBFBFB; }
+         <string notr="true">QGroupBox { border-radius: 8px; border: 1px solid palette(mid); margin-top: 12px; padding: 12px; background-color: palette(button); }
 QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top left; left: 12px; padding: 0px 4px; }</string>
         </property>
         <property name="title">

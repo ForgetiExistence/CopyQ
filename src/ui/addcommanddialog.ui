@@ -15,17 +15,17 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }
 QLineEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 QListView {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
 }
 QScrollBar {
     border: none;
@@ -34,12 +34,12 @@ QScrollBar {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -91,19 +91,19 @@ QScrollBar::handle:hover {
     border-radius: 4px;
     padding: 5px 12px;
     min-height: 32px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
 }
 QPushButton:hover {
-    background-color: #F5F5F5;
+    background-color: palette(alternate-base);
 }
 QPushButton:pressed {
-    background-color: #E5E5E5;
+    background-color: palette(mid);
 }
 QPushButton:default {
-    background-color: #0078D4;
-    color: #FFFFFF;
-    border: 1px solid #0078D4;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
+    border: 1px solid palette(highlight);
 }</string>
      </property>
     </widget>

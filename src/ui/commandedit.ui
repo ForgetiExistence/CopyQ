@@ -18,7 +18,7 @@
   </property>
   <property name="styleSheet">
    <string>CommandEdit {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -48,9 +48,9 @@
      <property name="styleSheet">
       <string>QPlainTextEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 QScrollBar {
     border: none;
@@ -59,12 +59,12 @@ QScrollBar {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }</string>
      </property>
     </widget>
@@ -100,7 +100,7 @@ QScrollBar::handle:hover {
        </property>
        <property name="styleSheet">
         <string>QLabel {
-    color: #1F1F1F;
+    color: palette(text);
 }</string>
        </property>
       </widget>

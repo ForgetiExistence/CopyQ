@@ -21,20 +21,20 @@
     border-radius: 4px;
     padding: 5px 12px;
     min-height: 24px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 
 QComboBox {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 24px;
     min-width: 120px;
@@ -42,7 +42,7 @@ QComboBox {
 
 QSpinBox {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 24px;
     min-width: 72px;
@@ -54,18 +54,18 @@ QCheckBox, QRadioButton {
 
 QGroupBox {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     margin-top: 12px;
     padding: 12px;
 }
 
 QListWidget, QTreeWidget, QTableWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
 }
 
 QTabWidget::pane {
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     border-radius: 8px;
 }
 
@@ -76,8 +76,8 @@ QTabBar::tab {
 }
 
 QTabBar::tab:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 
 QScrollBar {
@@ -88,23 +88,23 @@ QScrollBar {
 }
 
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }
 
 QMenu {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     padding: 4px;
 }
 
 QDialog {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }</string>
    </property>
    <widget class="QWidget" name="scrollAreaWidgetContents_4">

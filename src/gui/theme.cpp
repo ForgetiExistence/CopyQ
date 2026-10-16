@@ -388,27 +388,58 @@ void Theme::applyWin11PaletteDefaults()
     // defaultColorVarToRole / deserializeColor) return Win11 values even before
     // a theme with style_main_window=true is loaded. Call once at startup,
     // before any Theme is constructed.
+    //
+    // The ramp must follow the OS light/dark preference: the default_* variables
+    // are the fallback for every theme that does not override them, so seeding
+    // the light ramp unconditionally would force the whole UI light even on a
+    // dark Windows setup.
+    const bool dark = isSystemDarkTheme();
     QPalette palette = QApplication::palette();
-    palette.setColor( QPalette::Base, QColor(0xF3, 0xF3, 0xF3) );
-    palette.setColor( QPalette::AlternateBase, QColor(0xFF, 0xFF, 0xFF) );
-    palette.setColor( QPalette::Text, QColor(0x1A, 0x1A, 0x1A) );
-    palette.setColor( QPalette::Window, QColor(0xF3, 0xF3, 0xF3) );
-    palette.setColor( QPalette::WindowText, QColor(0x1A, 0x1A, 0x1A) );
-    palette.setColor( QPalette::Button, QColor(0xFB, 0xFB, 0xFB) );
-    palette.setColor( QPalette::ButtonText, QColor(0x1A, 0x1A, 0x1A) );
-    palette.setColor( QPalette::Highlight, QColor(0x00, 0x78, 0xD4) );
-    palette.setColor( QPalette::HighlightedText, QColor(0xFF, 0xFF, 0xFF) );
-    palette.setColor( QPalette::ToolTipBase, QColor(0xF9, 0xF9, 0xF9) );
-    palette.setColor( QPalette::ToolTipText, QColor(0x1A, 0x1A, 0x1A) );
-    palette.setColor( QPalette::PlaceholderText, QColor(0x6E, 0x6E, 0x6E) );
-    palette.setColor( QPalette::BrightText, QColor(0xFF, 0xFF, 0xFF) );
-    palette.setColor( QPalette::Light, QColor(0xFF, 0xFF, 0xFF) );
-    palette.setColor( QPalette::Midlight, QColor(0xED, 0xED, 0xED) );
-    palette.setColor( QPalette::Dark, QColor(0xA0, 0xA0, 0xA0) );
-    palette.setColor( QPalette::Mid, QColor(0xD1, 0xD1, 0xD1) );
-    palette.setColor( QPalette::Shadow, QColor(0x80, 0x80, 0x80) );
-    palette.setColor( QPalette::Link, QColor(0x00, 0x67, 0xC0) );
-    palette.setColor( QPalette::LinkVisited, QColor(0x00, 0x67, 0xC0) );
+
+    if (dark) {
+        palette.setColor( QPalette::Base, QColor(0x20, 0x20, 0x20) );
+        palette.setColor( QPalette::AlternateBase, QColor(0x2B, 0x2B, 0x2B) );
+        palette.setColor( QPalette::Text, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Window, QColor(0x20, 0x20, 0x20) );
+        palette.setColor( QPalette::WindowText, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Button, QColor(0x33, 0x33, 0x33) );
+        palette.setColor( QPalette::ButtonText, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Highlight, QColor(0x4C, 0xC2, 0xFF) );
+        palette.setColor( QPalette::HighlightedText, QColor(0x00, 0x00, 0x00) );
+        palette.setColor( QPalette::ToolTipBase, QColor(0x2B, 0x2B, 0x2B) );
+        palette.setColor( QPalette::ToolTipText, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::PlaceholderText, QColor(0x9A, 0x9A, 0x9A) );
+        palette.setColor( QPalette::BrightText, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Light, QColor(0x3A, 0x3A, 0x3A) );
+        palette.setColor( QPalette::Midlight, QColor(0x2D, 0x2D, 0x2D) );
+        palette.setColor( QPalette::Dark, QColor(0x18, 0x18, 0x18) );
+        palette.setColor( QPalette::Mid, QColor(0x52, 0x52, 0x52) );
+        palette.setColor( QPalette::Shadow, QColor(0x00, 0x00, 0x00) );
+        palette.setColor( QPalette::Link, QColor(0x4C, 0xC2, 0xFF) );
+        palette.setColor( QPalette::LinkVisited, QColor(0x4C, 0xC2, 0xFF) );
+    } else {
+        palette.setColor( QPalette::Base, QColor(0xF3, 0xF3, 0xF3) );
+        palette.setColor( QPalette::AlternateBase, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Text, QColor(0x1A, 0x1A, 0x1A) );
+        palette.setColor( QPalette::Window, QColor(0xF3, 0xF3, 0xF3) );
+        palette.setColor( QPalette::WindowText, QColor(0x1A, 0x1A, 0x1A) );
+        palette.setColor( QPalette::Button, QColor(0xFB, 0xFB, 0xFB) );
+        palette.setColor( QPalette::ButtonText, QColor(0x1A, 0x1A, 0x1A) );
+        palette.setColor( QPalette::Highlight, QColor(0x00, 0x78, 0xD4) );
+        palette.setColor( QPalette::HighlightedText, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::ToolTipBase, QColor(0xF9, 0xF9, 0xF9) );
+        palette.setColor( QPalette::ToolTipText, QColor(0x1A, 0x1A, 0x1A) );
+        palette.setColor( QPalette::PlaceholderText, QColor(0x6E, 0x6E, 0x6E) );
+        palette.setColor( QPalette::BrightText, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Light, QColor(0xFF, 0xFF, 0xFF) );
+        palette.setColor( QPalette::Midlight, QColor(0xED, 0xED, 0xED) );
+        palette.setColor( QPalette::Dark, QColor(0xA0, 0xA0, 0xA0) );
+        palette.setColor( QPalette::Mid, QColor(0xD1, 0xD1, 0xD1) );
+        palette.setColor( QPalette::Shadow, QColor(0x80, 0x80, 0x80) );
+        palette.setColor( QPalette::Link, QColor(0x00, 0x67, 0xC0) );
+        palette.setColor( QPalette::LinkVisited, QColor(0x00, 0x67, 0xC0) );
+    }
+
     QApplication::setPalette(palette);
 }
 
@@ -505,15 +536,19 @@ void Theme::resetTheme()
     // Win11 surface ramp used by the application palette (see applyApplicationPalette).
     // Button surfaces follow WinUI ControlFillColorDefault/Secondary; the link
     // accent follows AccentTextFillColorPrimaryBrush.
-    m_theme["button_bg"]       = Option("#FBFBFB");
-    m_theme["button_fg"]       = Option(defaultColorVarText);
-    m_theme["link"]            = Option("#0067C0");
-    m_theme["link_visited"]    = Option("#0067C0");
-    m_theme["light"]           = Option("#FFFFFF");
-    m_theme["midlight"]        = Option("#EDEDED");
-    m_theme["mid"]             = Option("#D1D1D1");
-    m_theme["dark"]            = Option("#A0A0A0");
-    m_theme["shadow"]          = Option("#808080");
+    //
+    // These resolve through QPalette (see applyWin11PaletteDefaults), so they
+    // follow the OS light/dark preference instead of forcing light. Themes can
+    // still override any of them explicitly.
+    m_theme["button_bg"]       = Option(defaultColorVarButton);
+    m_theme["button_fg"]       = Option(defaultColorVarButtonText);
+    m_theme["link"]            = Option(defaultColorLink);
+    m_theme["link_visited"]    = Option(defaultColorLinkVisited);
+    m_theme["light"]           = Option(defaultColorVarLight);
+    m_theme["midlight"]        = Option(defaultColorVarMidlight);
+    m_theme["mid"]             = Option(defaultColorVarMid);
+    m_theme["dark"]            = Option(defaultColorVarDark);
+    m_theme["shadow"]          = Option(defaultColorVarShadow);
 
     m_theme["font"]        = Option(win11FontString(win11UiFont, 10), "VALUE", ui ? ui->pushButtonFont : nullptr);
     m_theme["edit_font"]   = Option(win11FontString(win11MonoFont, 10), "VALUE", ui ? ui->pushButtonEditorFont : nullptr);
@@ -526,8 +561,8 @@ void Theme::resetTheme()
 
     m_theme["css"] = Option("");
     m_theme["menu_css"] = Option(
-                "\n    ;border: 1px solid #E5E5E5"
-                "\n    ;background: #F9F9F9"
+                "\n    ;border: 1px solid ${midlight}"
+                "\n    ;background: ${button_bg}"
                 "\n    ;color: ${fg}"
                 "\n    ;border-radius: 8px"
                 "\n    ;padding: 4px"
@@ -535,15 +570,15 @@ void Theme::resetTheme()
     m_theme["menu_bar_css"] = Option(
                 "\n    ;background: ${bg}"
                 "\n    ;color: ${fg}"
-                "\n    ;border-bottom: 1px solid #E5E5E5"
+                "\n    ;border-bottom: 1px solid ${midlight}"
                 );
     m_theme["menu_bar_selected_css"] = Option(
-                "\n    ;background: #EDEDED"
+                "\n    ;background: ${midlight}"
                 "\n    ;color: ${fg}"
                 "\n    ;border-radius: 4px"
                 );
     m_theme["menu_bar_disabled_css"] = Option(
-                "\n    ;color: #A0A0A0"
+                "\n    ;color: ${num_fg}"
                 );
 
     m_theme["item_css"] = Option(
@@ -565,7 +600,7 @@ void Theme::resetTheme()
 
     m_theme["tab_bar_css"] = Option(
                 "\n    ;background: ${bg}"
-                "\n    ;border-bottom: 1px solid #E5E5E5"
+                "\n    ;border-bottom: 1px solid ${midlight}"
                 );
     m_theme["tab_bar_tab_selected_css"] = Option(
                 "\n    ;padding: 0.5em 0.9em"
@@ -579,7 +614,7 @@ void Theme::resetTheme()
                 "\n    ;background: ${bg}"
                 "\n    ;border: 0"
                 "\n    ;border-bottom: 2px solid transparent"
-                "\n    ;color: #6B6B6B"
+                "\n    ;color: ${num_fg}"
                 );
     m_theme["tab_bar_scroll_buttons_css"] = Option(
                 "\n    ;background: transparent"
@@ -601,7 +636,7 @@ void Theme::resetTheme()
                 );
     m_theme["tab_tree_sel_item_css"] = Option(
                 "\n    ;color: ${fg}"
-                "\n    ;background: #EDEDED"
+                "\n    ;background: ${midlight}"
                 "\n    ;border-radius: 4px"
                 );
     m_theme["tab_tree_item_counter"] = Option(
@@ -626,20 +661,20 @@ void Theme::resetTheme()
                 "\n    ;padding: 4px"
                 );
     m_theme["tool_button_selected_css"] = Option(
-                "\n    ;background: #EDEDED"
+                "\n    ;background: ${midlight}"
                 "\n    ;color: ${fg}"
                 "\n    ;border: 0"
                 "\n    ;border-radius: 4px"
                 );
     m_theme["tool_button_pressed_css"] = Option(
-                "\n    ;background: #D6D6D6"
+                "\n    ;background: ${mid}"
                 "\n    ;border-radius: 4px"
                 );
 
     m_theme["search_bar"] = Option(
                 "\n    ;background: ${edit_bg}"
                 "\n    ;color: ${edit_fg}"
-                "\n    ;border: 1px solid #D1D1D1"
+                "\n    ;border: 1px solid ${mid}"
                 "\n    ;border-radius: 4px"
                 "\n    ;padding: 4px 8px"
                 "\n    ;margin: 2px"

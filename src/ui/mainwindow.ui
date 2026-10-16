@@ -38,13 +38,13 @@
       <property name="styleSheet">
        <string notr="true">QLineEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
     min-height: 32px;
 }
 QLineEdit:focus {
-    border: 1px solid #0078D4;
+    border: 1px solid palette(highlight);
 }</string>
       </property>
       <property name="minimumSize">
@@ -70,8 +70,8 @@ QLineEdit:focus {
     margin-right: 4px;
 }
 QTabBar::tab:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 QScrollBar {
     border: none;
@@ -80,12 +80,12 @@ QScrollBar {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }
 QToolBar {
     border: none;
@@ -97,7 +97,7 @@ QToolButton {
     min-height: 32px;
 }
 QToolButton:hover {
-    background-color: #E5E5E5;
+    background-color: palette(mid);
 }</string>
       </property>
      </widget>
@@ -147,12 +147,12 @@ QToolButton:hover {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }</string>
        </property>
        <widget class="QWidget" name="scrollAreaWidgetContents">

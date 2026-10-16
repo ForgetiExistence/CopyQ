@@ -24,45 +24,45 @@
     border-radius: 4px;
     padding: 5px 12px;
     min-height: 24px;
-    border: 1px solid #E5E5E5;
-    background-color: #FBFBFB;
+    border: 1px solid palette(mid);
+    background-color: palette(button);
 }
 QPushButton:hover {
-    background-color: #F5F5F5;
+    background-color: palette(alternate-base);
 }
 QPushButton:pressed {
-    background-color: #EDEBE9;
+    background-color: palette(midlight);
 }
 QLineEdit, QTextEdit, QPlainTextEdit {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
-    background-color: #FFFFFF;
+    background-color: palette(base);
 }
 QComboBox {
     border-radius: 4px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid palette(mid);
     padding: 5px 8px;
     min-height: 24px;
 }
 QComboBox:hover {
-    border: 1px solid #A0A0A0;
+    border: 1px solid palette(mid);
 }
 QCheckBox, QRadioButton {
     spacing: 8px;
 }
 QGroupBox {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     margin-top: 12px;
     padding: 12px;
 }
 QListWidget, QTreeWidget, QTableWidget {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
 }
 QTabWidget::pane {
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     border-radius: 8px;
 }
 QTabBar::tab {
@@ -71,8 +71,8 @@ QTabBar::tab {
     margin-right: 4px;
 }
 QTabBar::tab:selected {
-    background-color: #0078D4;
-    color: #FFFFFF;
+    background-color: palette(highlight);
+    color: palette(highlighted-text);
 }
 QScrollBar {
     border: none;
@@ -81,20 +81,20 @@ QScrollBar {
     margin: 0;
 }
 QScrollBar::handle {
-    background: #C0C0C0;
+    background: palette(mid);
     border-radius: 4px;
     min-height: 24px;
 }
 QScrollBar::handle:hover {
-    background: #A0A0A0;
+    background: palette(mid);
 }
 QMenu {
     border-radius: 8px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid palette(mid);
     padding: 4px;
 }
 QDialog {
-    background-color: #F3F3F3;
+    background-color: palette(window);
 }
 QDialogButtonBox QPushButton {
     min-height: 32px;

@@ -14,25 +14,25 @@
    <string>About</string>
   </property>
   <property name="styleSheet">
-   <string>QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 32px; border: 1px solid #E5E5E5; background-color: #FBFBFB; }
-QLineEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
-QTextEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
-QPlainTextEdit { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; background-color: #FFFFFF; }
-QComboBox { border-radius: 4px; border: 1px solid #D1D1D1; padding: 5px 8px; min-height: 24px; }
+   <string>QPushButton { border-radius: 4px; padding: 5px 12px; min-height: 32px; border: 1px solid palette(mid); background-color: palette(button); }
+QLineEdit { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); }
+QTextEdit { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); }
+QPlainTextEdit { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; background-color: palette(base); }
+QComboBox { border-radius: 4px; border: 1px solid palette(mid); padding: 5px 8px; min-height: 24px; }
 QCheckBox { spacing: 8px; }
 QRadioButton { spacing: 8px; }
-QGroupBox { border-radius: 8px; border: 1px solid #E5E5E5; margin-top: 12px; padding: 12px; }
-QListWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
-QTreeWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
-QTableWidget { border-radius: 8px; border: 1px solid #E5E5E5; }
-QTabWidget::pane { border: 1px solid #E5E5E5; border-radius: 8px; }
+QGroupBox { border-radius: 8px; border: 1px solid palette(mid); margin-top: 12px; padding: 12px; }
+QListWidget { border-radius: 8px; border: 1px solid palette(mid); }
+QTreeWidget { border-radius: 8px; border: 1px solid palette(mid); }
+QTableWidget { border-radius: 8px; border: 1px solid palette(mid); }
+QTabWidget::pane { border: 1px solid palette(mid); border-radius: 8px; }
 QTabBar::tab { border-radius: 4px; padding: 6px 16px; margin-right: 4px; }
-QTabBar::tab:selected { background-color: #0078D4; color: #FFFFFF; }
+QTabBar::tab:selected { background-color: palette(highlight); color: palette(highlighted-text); }
 QScrollBar { border: none; background: transparent; width: 8px; margin: 0; }
-QScrollBar::handle { background: #C0C0C0; border-radius: 4px; min-height: 24px; }
-QScrollBar::handle:hover { background: #A0A0A0; }
-QMenu { border-radius: 8px; border: 1px solid #E5E5E5; padding: 4px; }
-QDialog { background-color: #F3F3F3; }</string>
+QScrollBar::handle { background: palette(mid); border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:hover { background: palette(mid); }
+QMenu { border-radius: 8px; border: 1px solid palette(mid); padding: 4px; }
+QDialog { background-color: palette(window); }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
